@@ -1,0 +1,20 @@
+#!/bin/sh
+# Accept direct execution as well as `bash bohselecta`.
+bohselecta_script=$0
+case "$bohselecta_script" in
+  */*) ;;
+  *) bohselecta_script=$(command -v "$bohselecta_script") || exit 1 ;;
+esac
+while [ -L "$bohselecta_script" ]; do
+  bohselecta_dir=$(CDPATH= cd -P -- "$(dirname -- "$bohselecta_script")" && pwd) || exit 1
+  bohselecta_link=$(readlink "$bohselecta_script") || exit 1
+  case "$bohselecta_link" in
+    /*) bohselecta_script=$bohselecta_link ;;
+    *) bohselecta_script=$bohselecta_dir/$bohselecta_link ;;
+  esac
+done
+if ! command -v node >/dev/null 2>&1; then
+  printf '%s\n' 'bohselecta needs Node.js 22.18 or newer. Install Node.js from https://nodejs.org.' >&2
+  exit 1
+fi
+exec node "$(dirname -- "$bohselecta_script")/bohselecta.js" "$@"

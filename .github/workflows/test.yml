@@ -1,0 +1,19 @@
+name: Tests
+on:
+  push:
+    branches: [main]
+    paths: ['src/**', 'bin/**', 'test/**', 'prototypes/**', 'scripts/**', 'package*.json', '.github/workflows/test.yml']
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci --ignore-scripts
+      - run: npm run check
+      - run: npm test

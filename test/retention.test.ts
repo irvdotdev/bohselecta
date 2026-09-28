@@ -1,0 +1,20 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { Store, type Task } from '../src/store.ts';
+import { classify } from '../src/router.ts';
+import { CATALOG_VERSION } from '../src/config.ts';
+test('pruning does not remove a newly opened session; deleting a task clears copied routing context',t=>{
+  const home=mkdtempSync(join(tmpdir(),'bohselecta-retention-'));
+  const store=new Store(home,90);
+  t.after(()=>{store.close();rmSync(home,{recursive:true,force:true});});
+  const session=store.newSession('codex','/project');
+  store.prune(90);assert.ok(store.session(session.id));
+  const make=(id:string,createdAt:string):Task=>({id,createdAt,sessionId:session.id,provider:'codex',cwd:'/project',prompt:'task',context:'previous private task',status:'recommended',recommendation:{analysis:classify('task'),choices:[],source:'rules',elapsedMs:0,catalogVersion:CATALOG_VERSION}});
+  store.save(make('old','2020-01-01T00:00:00.000Z'));store.save(make('new',new Date().toISOString()));
+  session.context='previous private task';store.saveSession(session);
+  store.prune(90);assert.equal(store.task('old'),undefined);assert.equal(store.task('new')!.context,'');assert.equal(store.session(session.id)!.context,'');
+  store.save(make('third',new Date().toISOString()));store.deleteTask('new');assert.equal(store.task('third')!.context,'');
+});

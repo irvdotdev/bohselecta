@@ -1,2 +1,12 @@
-dist/
+node_modules/
+*.sqlite*
+.bohselecta/
+coverage/
 .DS_Store
+.env
+.env.*
+/prototypes/popup/target/
+/prototypes/popup/prebuilt/
+/dist/
+/release/
+.openai/
