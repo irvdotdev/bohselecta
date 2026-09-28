@@ -24,7 +24,7 @@ function finish(action) {
   const model = action === 'keep' ? 'Opus' : selected === 0 ? 'Sonnet' : 'Opus';
   const cancelled = action === 'cancel';
   const title = cancelled ? 'Task cancelled.' : `${model} selected. Back to work.`;
-  const detail = cancelled ? 'In the real flow, no task would start.' : 'In the real flow, your saved task continues in Claude. No repasting.';
+  const detail = cancelled ? 'In the real flow, no task would start.' : 'On validated Claude versions, your saved task continues automatically. Other versions show a command to enter. No repasting.';
   document.getElementById('outcome-title').textContent = title;
   document.getElementById('outcome-detail').textContent = detail;
   outcome.querySelector('.prompt').textContent = cancelled ? '—' : '✓';

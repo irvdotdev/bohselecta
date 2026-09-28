@@ -4,6 +4,12 @@ A compact website and interactive demo for bohselecta, a local model adviser for
 
 This repository contains the website and documentation. The terminal service is not distributed here; the demo does not call a model.
 
+## Project documentation
+
+Read the [current documentation and changelog](https://irvdotdev.github.io/bohselecta/docs.html) for service setup, popup compatibility, commands, troubleshooting, pricing limits, and local data storage. Updated 28 September 2026 for Claude Code 2.1.282 and 2.1.283 automatic continuation.
+
+The popup is an unreleased preview; the native hook release remains v0.2.2. Service setup commands require a separate service source checkout. Cloning this website repository is not a terminal-service installation.
+
 ## Local preview
 
 With Node.js 22.18 or later:
