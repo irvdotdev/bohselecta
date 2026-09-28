@@ -9,3 +9,5 @@ The recorded prompt was “Plan a todo app. Suggest three features in one short 
 Actual PTY output was replayed in a terminal renderer and encoded as H.264 MP4. Pauses and onboarding were cut, account information was cropped out, and chapter labels were added outside the terminal. The real hook-stop notice remains visible. This is an edited walkthrough, not an installation-speed benchmark.
 
 English WebVTT captions explain prerequisites and each step. The player has native controls, a real-popup poster, no autoplay, no audio, and `preload="none"` to avoid downloading the video until requested. The public site remains one page; source and detailed documentation stay in GitHub.
+
+For v0.3.0-alpha.4, the chooser segment and poster were re-recorded from the updated Ratatui binary with the same task and keyboard sequence. The install and Claude continuation segments remain the original alpha.3 recording; the surrounding terminal renderer now uses the website palette. This palette update does not change the continuation behavior.
