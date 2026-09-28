@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0-alpha.7 — optional default Claude shortcut (2026-09-28)
+
+- Add `bohselecta setup claude`: opt in once to open the popup when typing plain `claude` in an interactive zsh or bash terminal.
+- Back up profiles, refuse conflicting shortcuts and edited blocks, preserve arguments and scripts, and support `bohselecta default claude on|off|status`.
+- Offer setup after interactive direct installation; show the setup command in Homebrew and website instructions.
+
 ## 0.3.0-alpha.6 — easier installation (2026-09-28)
 
 - The alpha.5 tag was an unpublished CI packaging attempt; install build dependencies before compiling npm output on clean runners.

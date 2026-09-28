@@ -1,9 +1,11 @@
-Install bohselecta with Homebrew: `brew install irvdotdev/tap/bohselecta`. Node and tmux are included as dependencies; sign in to Claude Code separately.
+Make bohselecta part of your normal Claude launch:
 
-This release also includes an npm-compatible tarball containing compiled JavaScript and all four prebuilt popup binaries. It supports global npm installation and npx without install scripts or Rust. Registry publication is separate from this GitHub release.
+```sh
+bohselecta setup claude
+```
 
-Homebrew checks for released updates hourly. The existing no-sudo installer remains available.
+Opt in, open a new terminal, and type `claude`. Setup supports zsh and bash, backs up profiles, and adds a removable shortcut. Commands with arguments and non-interactive calls continue using ordinary Claude. Undo with `bohselecta default claude off` and open a new terminal.
 
-Installation: https://github.com/irvdotdev/bohselecta#install
+Homebrew and npm installs require running setup explicitly. Interactive direct installs offer it after installation. No automatic shell edits without opting in.
 
-Supports macOS 15+ and glibc Linux on arm64/x64. Model overrides apply to one task; automatic continuation is validated on Claude Code 2.1.282–283.
+Install or update: https://github.com/irvdotdev/bohselecta#install

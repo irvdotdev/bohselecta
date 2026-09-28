@@ -1,6 +1,6 @@
 # Installing bohselecta
 
-**Easiest setup:** `brew install irvdotdev/tap/bohselecta` installs Node, tmux, and the prebuilt popup. Then run `bohselecta native refresh claude` and `bohselecta popup claude`. Update with `brew update && brew upgrade bohselecta`.
+**Easiest setup:** `brew install irvdotdev/tap/bohselecta` installs Node, tmux, and the prebuilt popup. Then run `bohselecta native refresh claude` and `bohselecta setup claude`. Opt in, open a new terminal, and type `claude`. Or skip setup and launch with `bohselecta popup claude`. Undo the shortcut with `bohselecta default claude off` and open a new terminal. Update with `brew update && brew upgrade bohselecta`.
 
 For npm and npx release-tarball commands, see the [main installation guide](../README.md#npm--npx). The sections below describe the direct installer.
 
@@ -24,7 +24,7 @@ Default prefix: `~/.local`. Override with `node /tmp/bohselecta-install.mjs --pr
 - Versioned software: `PREFIX/share/bohselecta-app/releases/`
 - Task history and configuration: `~/.local/share/bohselecta` (separate; the installer does not modify it)
 
-The installer never edits shell profiles, client settings, or unrelated commands. It prints a PATH instruction when needed. For the default prefix, add this to `~/.zshrc` or your shell's profile and open a new terminal:
+The installer does not edit client settings or unrelated commands. In an interactive terminal it offers optional shell setup, which changes profiles only after you opt in. It prints a PATH instruction when needed. For the default prefix, add this to `~/.zshrc` or your shell's profile and open a new terminal:
 
 ```sh
 export PATH="$HOME/.local/bin:$PATH"

@@ -5,7 +5,7 @@ import {homedir} from 'node:os';
 import {dirname, join, resolve} from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
-export const VERSION='0.3.0-alpha.6';
+export const VERSION='0.3.0-alpha.7';
 export function compatibleNode(version) {
  const [major,minor]=version.split('.').map(Number);
  return major===22 && minor>=18 || major>=24;
@@ -59,7 +59,7 @@ export async function install({prefix=join(homedir(),'.local'),base=`https://git
   if(!existsSync(link))symlinkSync(join(current,'bin/bohselecta'),link);
   console.log(`\nInstalled: ${link}\nNo Claude settings or task history were changed.`);
   if(!(process.env.PATH||'').split(':').some(p=>resolve(p)===dirname(link)))console.log(`Add this to your shell profile, then restart your terminal:\nexport PATH=${("'"+dirname(link).replaceAll("'", "'\\''")+"'")}:"$PATH"`);
-  console.log('\nNext: bohselecta native refresh claude\n      bohselecta popup claude\nRequires signed-in Claude Code and tmux. See https://irvdotdev.github.io/bohselecta/docs.html#how-to');
+  console.log('\nOptional default setup: bohselecta setup claude\nNext: bohselecta native refresh claude\n      bohselecta popup claude\nRequires signed-in Claude Code and tmux. See https://irvdotdev.github.io/bohselecta/docs.html#how-to');
   return {link,release};
  } finally {
   rmSync(temp,{recursive:true,force:true});
@@ -68,7 +68,15 @@ export async function install({prefix=join(homedir(),'.local'),base=`https://git
 }
 if(process.argv[1] && import.meta.url===pathToFileURL(realpathSync(process.argv[1])).href) {
  const args=process.argv.slice(2);
- if(args.includes('--help'))console.log('node install.mjs [--prefix PATH]\nInstalls bohselecta under ~/.local by default. No sudo; no shell-profile or client-settings edits.');
+ if(args.includes('--help'))console.log('node install.mjs [--prefix PATH]\nInstalls bohselecta under ~/.local by default. No sudo; interactive installs offer optional shell setup.');
  else if(args.length && !(args.length===2 && args[0]==='--prefix')) {console.error('Usage: node install.mjs [--prefix PATH]');process.exitCode=1;}
- else await install(args.length?{prefix:args[1]}:{}).catch(error=>{console.error(`bohselecta installation failed: ${error.message}`);process.exitCode=1;});
+ else {
+  try {
+   const installed=await install(args.length?{prefix:args[1]}:{});
+   if(process.stdin.isTTY && process.stdout.isTTY) {
+    try {run(installed.link,['setup','claude']);}
+    catch {console.error('Installation complete. Optional default setup was not completed; retry with bohselecta setup claude.');}
+   }
+  }catch(error){console.error(`bohselecta installation failed: ${error.message}`);process.exitCode=1;}
+ }
 }

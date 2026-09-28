@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'node:url';
+import { defaultCli } from './shell-default.ts';
 import { launchPopup } from './popup.ts';
 import { nativeCli } from './native-install.ts';
 import { parseArgs } from 'node:util';
@@ -23,6 +24,8 @@ const help = `bohselecta — the right model before the task starts
   bohselecta native refresh                 Refresh discovered models (no task execution)
   bohselecta uninstall                     Remove only bohselecta hooks
   bohselecta                               Open the standalone prototype
+  bohselecta setup claude                  Optionally make plain claude use the popup
+  bohselecta default claude on|off|status   Manage the shell shortcut
   bohselecta setup                         Choose your assistant and project
   bohselecta codex                         Start a routed Codex session
   bohselecta claude                        Start a routed Claude session
@@ -82,6 +85,11 @@ export async function main(argv = process.argv.slice(2)) {
   if (v.version) { console.log(JSON.parse(readFileSync(new URL('../package.json',import.meta.url),'utf8')).version); return; }
   if (v.help) { console.log(help); return; }
   if (v.choose && !['1','2'].includes(v.choose)) throw new Error('--choose must be 1 or 2.');
+  if ((p[0]==='setup' && p[1]==='claude') || p[0]==='default') {
+    const setup=p[0]==='setup';
+    if(Object.keys(v).length || p[1]!=='claude' || p.length!==(setup?2:3))throw Error('Use bohselecta setup claude or bohselecta default claude on | off | status.');
+    return defaultCli(setup?'on':p[2],setup);
+  }
   const home = v.home ? resolve(v.home) : homePath();
   if (!p.length || p[0] === 'setup') {
     const preferences = await launchPreferences(home, p[0] === 'setup', v.cwd);

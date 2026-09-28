@@ -56,7 +56,9 @@ ${resource('linux-x64',6)}
     <<~EOS
       Sign in to Claude Code first, then run from your project folder:
         bohselecta native refresh claude
-        bohselecta popup claude
+        bohselecta setup claude
+      After opting in, open a new terminal and type claude.
+      Or launch directly: bohselecta popup claude
     EOS
   end
 
