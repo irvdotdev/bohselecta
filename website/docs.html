@@ -18,7 +18,7 @@
       <nav aria-label="Main navigation">
         <a href="#how-it-works">how it works</a><a href="#how-to">how to</a><a href="#docs">docs</a><a href="#changelog">changelog</a>
       </nav>
-      <span class="version">v0.3.0-alpha.2 <span class="dot" aria-hidden="true"></span> public alpha</span>
+      <span class="version">v0.3.0-alpha.3 <span class="dot" aria-hidden="true"></span> public alpha</span>
     </header>
 
     <main id="main">
@@ -76,9 +76,9 @@
         <div class="section-top"><span class="section-id">02 / HOW TO</span><span class="muted">a few commands. you’re in.</span></div>
         <h2 id="howto-title">One launch. Your usual Claude.</h2>
         <p class="section-intro">You’ll need Node.js with npm (22.18+ on 22.x, or 24+), signed-in Claude Code, and tmux. The installer includes the popup binary—no Rust or Git needed. Use an interactive terminal at least 46 columns × 15 rows.</p>
-        <div class="status-note"><span class="prompt">i</span><p><strong>Public alpha is ready.</strong> Install the service below or build from the <a href="https://github.com/irvdotdev/bohselecta">MIT-licensed source</a>. Prebuilt popups support macOS 15+ on Apple Silicon and Intel, and Ubuntu 22.04+ or compatible glibc Linux on x64 and arm64. <a href="https://github.com/irvdotdev/bohselecta/releases/tag/v0.3.0-alpha.2">Release downloads ↗</a></p></div>
+        <div class="status-note"><span class="prompt">i</span><p><strong>Public alpha is ready.</strong> Install the service below or build from the <a href="https://github.com/irvdotdev/bohselecta">MIT-licensed source</a>. Prebuilt popups support macOS 15+ on Apple Silicon and Intel, and Ubuntu 22.04+ or compatible glibc Linux on x64 and arm64. <a href="https://github.com/irvdotdev/bohselecta/releases/tag/v0.3.0-alpha.3">Release downloads ↗</a></p></div>
         <div class="setup-grid">
-          <article class="setup-card"><span class="step-number">01 / INSTALL</span><h3>Install once. No sudo.</h3><p>Download the versioned installer. It checks release checksums and installs to your user directory.</p><div class="code-block"><pre><code>curl -fL https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.2/install.mjs -o /tmp/bohselecta-install.mjs
+          <article class="setup-card"><span class="step-number">01 / INSTALL</span><h3>Install once. No sudo.</h3><p>Download the versioned installer. It checks release checksums and installs to your user directory.</p><div class="code-block"><pre><code>curl -fL https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.3/install.mjs -o /tmp/bohselecta-install.mjs
 node /tmp/bohselecta-install.mjs
 export PATH="$HOME/.local/bin:$PATH"</code></pre><button class="copy" type="button" aria-label="Copy installation commands">copy</button></div></article>
           <article class="setup-card"><span class="step-number">02 / CHECK MODELS</span><h3>Know what’s available.</h3><p>Refresh Claude’s model catalog without running a task. Local routing uses this catalog for seven days.</p><div class="code-block"><pre><code>bohselecta native refresh claude</code></pre><button class="copy" type="button" aria-label="Copy model refresh command">copy</button></div></article>
@@ -91,7 +91,7 @@ export PATH="$HOME/.local/bin:$PATH"</code></pre><button class="copy" type="butt
 
       <section class="section" id="docs" aria-labelledby="docs-title">
         <div class="section-top"><span class="section-id">03 / DOCUMENTATION</span><span class="muted">read the small print. it’s small.</span></div>
-        <div class="docs-heading"><h2 id="docs-title">The useful bits.</h2><span class="version">Updated 28 Sep 2026 · v0.3.0-alpha.2</span></div>
+        <div class="docs-heading"><h2 id="docs-title">The useful bits.</h2><span class="version">Updated 28 Sep 2026 · v0.3.0-alpha.3</span></div>
         <div class="docs-grid">
           <div class="command-reference"><h3><span class="prompt">$</span> Command reference</h3>
             <dl>
@@ -99,7 +99,7 @@ export PATH="$HOME/.local/bin:$PATH"</code></pre><button class="copy" type="butt
               <div><dt><code>bohselecta preview claude</code></dt><dd>Open the command-only preview on Sonnet. Use an offered <code>/boh:sonnet</code>, <code>/boh:opus</code>, or <code>/boh:haiku</code> command to continue a saved task.</dd></div>
               <div><dt><code>boh: status</code></dt><dd>Type inside Claude’s preview to see the configured model, popup or command-only mode, automatic or manual continuation, and why the last task kept its model. No model call is needed.</dd></div>
               <div><dt><code>boh: keep · boh: cancel</code></dt><dd>Inside either Claude preview, continue a saved task on the current model or discard it. <code>boh: off</code>, <code>boh: on</code>, and <code>boh: status</code> control advice.</dd></div>
-              <div><dt><code>bohselecta install claude</code><br><code>bohselecta install codex</code></dt><dd>Install v0.2.2 native hooks, then restart your client. Codex also requires its normal hook review in <code>/hooks</code>. Change models manually with <code>/model</code>, then resubmit your task. These hooks do not show Ratatui.</dd></div>
+              <div><dt><code>bohselecta install claude</code><br><code>bohselecta install codex</code></dt><dd>Install the native hooks, then restart your client. Codex also requires its normal hook review in <code>/hooks</code>. Change models manually with <code>/model</code>, then resubmit your task. These hooks do not show Ratatui.</dd></div>
               <div><dt><code>bohselecta native status</code></dt><dd>Check installed hooks, client versions, and catalog freshness. Does not report whether a popup session is open.</dd></div>
               <div><dt><code>bohselecta native refresh claude</code></dt><dd>Refresh available Claude models without executing a task.</dd></div>
               <div><dt><code>bohselecta history</code></dt><dd>Review tasks, recommendations, choices, and outcomes. <code>bohselecta history delete ID</code> removes one local record.</dd></div>
@@ -109,7 +109,7 @@ export PATH="$HOME/.local/bin:$PATH"</code></pre><button class="copy" type="butt
           <div class="doc-topics">
             <details><summary>Can I install from source?<span aria-hidden="true">+</span></summary><div class="detail-content"><p>Yes. Install Git, Node/npm, and Rust/Cargo, then use the public release tag. tmux and signed-in Claude Code are needed for the popup.</p><div class="code-block"><pre><code>git clone https://github.com/irvdotdev/bohselecta.git
 cd bohselecta
-git checkout v0.3.0-alpha.2
+git checkout v0.3.0-alpha.3
 npm ci
 npm link
 bohselecta native refresh claude
@@ -132,7 +132,7 @@ bohselecta popup claude</code></pre><button class="copy" type="button" aria-labe
       <section class="section" id="changelog" aria-labelledby="changelog-title">
         <div class="section-top"><span class="section-id">04 / CHANGELOG</span><span class="muted">small steps, recorded.</span></div>
         <h2 id="changelog-title">What’s changed.</h2>
-        <div class="release"><div class="release-label"><span class="release-version">v0.3.0-alpha.2</span><span class="muted">28 Sep 2026 / Public alpha</span></div><div><h3>Ready to install.</h3><ul><li>Public service source under the MIT license, with a tagged clone-and-install path.</li><li>A user-local installer with SHA-256 checksums, no sudo, and prebuilt popup binaries for macOS and Linux on arm64 and x64.</li><li>Clean-install checks cover CLI routing, the popup binary, paths with spaces, failed updates, reinstalling, and retained history.</li><li>74 JavaScript/TypeScript tests, two Rust tests, and CI for Node 22.18 and 24.</li></ul><p><a href="https://github.com/irvdotdev/bohselecta/releases/tag/v0.3.0-alpha.2">Download the alpha ↗</a></p></div></div>
+        <div class="release"><div class="release-label"><span class="release-version">v0.3.0-alpha.3</span><span class="muted">28 Sep 2026 / Public alpha</span></div><div><h3>Ready to install.</h3><ul><li>Public service source under the MIT license, with a tagged clone-and-install path.</li><li>A user-local installer with SHA-256 checksums, no sudo, and prebuilt popup binaries for macOS and Linux on arm64 and x64.</li><li>Clean-install checks cover CLI routing, the popup binary, paths with spaces, failed updates, reinstalling, and retained history.</li><li>75 JavaScript/TypeScript tests, two Rust tests, and CI for Node 22.18 and 24.</li></ul><p><a href="https://github.com/irvdotdev/bohselecta/releases/tag/v0.3.0-alpha.3">Download the alpha ↗</a></p></div></div>
         <div class="release"><div class="release-label"><span class="status-marker">LATEST</span><span class="muted">28 Sep 2026 / Included in alpha</span></div><div><h3>A more reliable popup handoff.</h3><ul><li>Enable automatic task continuation on Claude Code 2.1.283, alongside 2.1.282. A live 2.1.283 test confirmed Sonnet execution after selecting it from Opus.</li><li>Fit the chooser to the attached terminal, down to 46 columns × 15 rows, and explain failures while preserving manual continuation.</li><li>Cancel an unanswered chooser after 45 seconds. Rebuild a missing or outdated Rust binary when launching.</li><li>Show popup mode, automatic or manual continuation, and reasons for keeping the current model in <code>boh: status</code>.</li></ul><p>TypeScript checks, 69 JavaScript/TypeScript tests, and 2 Rust tests pass. Real tmux chooser tests cover selection at 80 × 24 and cancellation at 70 × 18. Restart the popup session after updating.</p></div></div>
         <div class="release"><div class="release-label"><span class="status-marker">WORKING PREVIEW</span><span class="muted">Included in alpha / Claude only</span></div><div><h3>Choose. Enter. Back to work.</h3><ul><li>Ratatui popup over Claude’s terminal, hosted in a dedicated tmux session.</li><li>Enter chooses and continues; Escape keeps the current model; q cancels.</li><li>Sonnet by default, quiet routing for suitable tasks, and short commands as a fallback.</li><li>Continuation tied to the exact saved task, with checks for the correct pane and an empty prompt.</li></ul><p>Initial live tests on Claude Code 2.1.282 and tmux 3.7c verified Sonnet execution, keeping Opus, and cancellation. Hook notices remain visible.</p></div></div>
         <div class="release"><div class="release-label"><span class="status-marker">NEXT</span><span class="muted">Unreleased / planned</span></div><div><h3>Make the cost comparison sharper.</h3><p>Verified pricing, estimates for tokens and caching, and separate treatment of subscriptions and API charges. Recommendations across providers and cross-provider handoff remain future work.</p></div></div>
