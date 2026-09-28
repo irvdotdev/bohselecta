@@ -13,7 +13,11 @@ import type {Store} from './store.ts';
 const root=fileURLToPath(new URL('../',import.meta.url));
 export function popupBinary(projectRoot=root) {
  const prebuilt=join(projectRoot,'prototypes/popup/prebuilt/boh-popup');
- return existsSync(prebuilt)?prebuilt:join(projectRoot,'prototypes/popup/target/debug/boh-popup');
+ if(existsSync(prebuilt))return prebuilt;
+ const packaged=join(projectRoot,'prototypes/popup/prebuilt',`boh-popup-${process.platform}-${process.arch}`);
+ if(existsSync(packaged))return packaged;
+ if(existsSync(join(projectRoot,'prototypes/popup/prebuilt')))throw Error('No popup binary for this platform. Supported: macOS 15+ and glibc Linux, arm64/x64.');
+ return join(projectRoot,'prototypes/popup/target/debug/boh-popup');
 }
 export const tmuxCall=(socket:string,args:string[])=>execFileSync('tmux',['-S',socket,...args],{encoding:'utf8',timeout:2000,stdio:['ignore','pipe','pipe']}).trimEnd();
 export function readyScreen(screen:string,marker:string):boolean {

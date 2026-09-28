@@ -10,7 +10,7 @@ const temp=mkdtempSync(join(tmpdir(),'boh-release-'));
 try {
  const stage=join(temp,'bohselecta');mkdirSync(stage);mkdirSync(output,{recursive:true});
  // Explicit software-only archive: no history, artwork, local settings or build output.
- for(const name of ['package.json','package-lock.json','LICENSE','README.md','CHANGELOG.md','tsconfig.json','src','bin','docs','prototypes','test','scripts']) {
+ for(const name of ['package.json','package-lock.json','LICENSE','README.md','CHANGELOG.md','tsconfig.json','tsconfig.build.json','src','bin','docs','prototypes','test','scripts']) {
   cpSync(join(root,name),join(stage,name),{recursive:true,filter:path=>!path.split('/').some(part=>['target','prebuilt','node_modules','.DS_Store'].includes(part))});
  }
  const archive=join(output,`bohselecta-${version}.tar.gz`);

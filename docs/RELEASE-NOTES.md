@@ -1,7 +1,9 @@
-The terminal popup now uses the same colors as the GitHub page: dark green, warm cream, muted sage, and amber. Keyboard controls and model continuation are unchanged.
+Install bohselecta with Homebrew: `brew install irvdotdev/tap/bohselecta`. Node and tmux are included as dependencies; sign in to Claude Code separately.
 
-Includes prebuilt popup binaries for macOS Apple Silicon/Intel and Linux arm64/x64, with SHA-256 verification.
+This release also includes an npm-compatible tarball containing compiled JavaScript and all four prebuilt popup binaries. It supports global npm installation and npx without install scripts or Rust. Registry publication is separate from this GitHub release.
 
-Install or update: https://github.com/irvdotdev/bohselecta#install
+Homebrew checks for released updates hourly. The existing no-sudo installer remains available.
 
-Requires Node.js 22.18+ (22.x) or 24+, npm, signed-in Claude Code, and tmux. No Rust needed with the installer. Automatic continuation is verified on Claude Code 2.1.282 and 2.1.283; other versions provide a manual command. Model overrides last one task. This remains an alpha.
+Installation: https://github.com/irvdotdev/bohselecta#install
+
+Supports macOS 15+ and glibc Linux on arm64/x64. Model overrides apply to one task; automatic continuation is validated on Claude Code 2.1.282–283.

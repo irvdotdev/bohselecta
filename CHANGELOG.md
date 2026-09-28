@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0-alpha.5 — easier installation (2026-09-28)
+
+- Add a Homebrew tap with Node and tmux dependencies, verified prebuilt popups, and automatic release updates.
+- Package compiled JavaScript and four popup binaries for npm and npx, without install scripts or a Rust requirement.
+- Test npm global installs, plugin imports, offline routing, popup rendering, and npx on every release platform.
+
 ## 0.3.0-alpha.4 — matching terminal and website colors (2026-09-28)
 
 - Match the Ratatui popup to the GitHub page: dark green background, warm cream text, muted sage descriptions, and amber selection and controls.

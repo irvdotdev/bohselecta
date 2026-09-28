@@ -1,0 +1,33 @@
+name: Publish verified npm package
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing GitHub release tag (for example v0.3.0-alpha.5)'
+        required: true
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Download and verify released npm tarball
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag }}
+        shell: bash
+        run: |
+          [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.-]+)?$ ]] || exit 1
+          archive="bohselecta-${RELEASE_TAG#v}.tgz"
+          gh release download "$RELEASE_TAG" --repo irvdotdev/bohselecta --pattern "$archive" --pattern SHA256SUMS
+          grep "  $archive$" SHA256SUMS | sha256sum --check --strict
+      - name: Publish using npm trusted publishing
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: npm publish "bohselecta-${RELEASE_TAG#v}.tgz" --access public --tag alpha --provenance

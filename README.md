@@ -2,22 +2,46 @@
 
 A local model adviser inside Claude Code and Codex. It checks the task, weighs capability against relative cost, and suggests a suitable model before you spend the expensive one on a small job.
 
-**Public alpha · v0.3.0-alpha.4.** The Claude popup is the main experience. Automatic continuation is verified on Claude Code 2.1.282 and 2.1.283; other versions offer a manual continuation command. Model overrides apply to one task. Cross-provider handoff and live monetary pricing are not included.
+**Public alpha · v0.3.0-alpha.5.** The Claude popup is the main experience. Automatic continuation is verified on Claude Code 2.1.282 and 2.1.283; other versions offer a manual continuation command. Model overrides apply to one task. Cross-provider handoff and live monetary pricing are not included.
 
 [Website](https://irvdotdev.github.io/bohselecta/) · [Documentation](https://irvdotdev.github.io/bohselecta/docs.html) · [Releases](https://github.com/irvdotdev/bohselecta/releases)
 
 ## Install
 
-Requires Node.js 22.18+ on the 22.x line, or Node.js 24+, including npm. For the popup, install tmux and sign in to Claude Code first. The installer includes the popup binary: no Rust, Git, sudo, or separate API key is needed.
+### Homebrew (recommended)
 
 ```sh
-curl -fL https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.4/install.mjs -o /tmp/bohselecta-install.mjs
+brew install irvdotdev/tap/bohselecta
+```
+
+Homebrew installs Node and tmux and includes the prebuilt popup. Sign in to Claude Code separately. Update with `brew update && brew upgrade bohselecta`.
+
+### npm / npx
+
+The GitHub release includes a tested npm package with compiled JavaScript and all four popup binaries. Until npm registry publication is available, install directly from the release:
+
+```sh
+npm install -g https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.5/bohselecta-0.3.0-alpha.5.tgz
+```
+
+Or try it without a global installation:
+
+```sh
+npx --yes --package=https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.5/bohselecta-0.3.0-alpha.5.tgz bohselecta popup claude
+```
+
+Requires Node.js 22.18+ (22.x) or 24+, npm, tmux, and signed-in Claude Code. No Rust or install scripts. The short commands `npm install -g bohselecta` and `npx bohselecta` are not available until registry publication is complete.
+
+### Direct installer
+
+```sh
+curl -fL https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.5/install.mjs -o /tmp/bohselecta-install.mjs
 node /tmp/bohselecta-install.mjs
 ```
 
-The installer verifies SHA-256 checksums, installs to `~/.local/share/bohselecta-app`, and creates `~/.local/bin/bohselecta`. If that directory is not on PATH, it prints the line to add to your shell profile. It does not change your shell profile or client settings itself. Existing unrelated commands are never overwritten. Use `node /tmp/bohselecta-install.mjs --prefix /another/path` for another location.
+Requires the same Node/npm setup as npm installation. The installer verifies SHA-256 checksums, installs to `~/.local/share/bohselecta-app`, and creates `~/.local/bin/bohselecta`. It prints a PATH hint when needed and does not change shell profiles or client settings. Use `--prefix /another/path` for another location.
 
-Prebuilt binaries: macOS Apple Silicon and Intel (macOS 15+), Linux x64 and arm64 (Ubuntu 22.04+ or compatible glibc system). Windows and Alpine/musl are not supported by this installer. A failed download or checksum check leaves the active installation intact.
+Prebuilt binaries support macOS 15+ and compatible glibc Linux (Ubuntu 22.04+) on arm64/x64. Windows and Alpine/musl are not supported. No Rust, Git, sudo, or separate API key is required for these installation methods. Use one installation method at a time to avoid multiple commands on PATH.
 
 ## Run inside Claude
 
@@ -41,7 +65,7 @@ Requires Git, Node/npm, and Rust/Cargo for the popup build. tmux and signed-in C
 ```sh
 git clone https://github.com/irvdotdev/bohselecta.git
 cd bohselecta
-git checkout v0.3.0-alpha.4
+git checkout v0.3.0-alpha.5
 npm ci
 npm link
 bohselecta native refresh claude
@@ -51,6 +75,8 @@ bohselecta popup claude
 The first popup launch builds the locked Rust dependencies. If your npm global prefix needs administrator access, use `./bin/bohselecta` instead of `npm link`; do not run npm with sudo.
 
 ## Update or remove
+
+For Homebrew, run `brew update && brew upgrade bohselecta`, or `brew uninstall bohselecta` to remove it. For npm, install the desired release tarball again, or run `npm uninstall -g bohselecta`. Task history is retained.
 
 For installer installations, download the installer from the desired release and run it again, then restart your popup session. Previous release directories are retained; see [installation, updates, and removal](docs/INSTALL.md). Source installations should check out the desired tag, run `npm ci`, and restart.
 
