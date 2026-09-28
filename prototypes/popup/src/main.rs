@@ -28,14 +28,16 @@ fn clean(s: &str, max: usize) -> String {
     s.chars().filter(|c| !c.is_control()).take(max).collect()
 }
 fn render(frame: &mut Frame, request: &Request, selected: usize) {
-    let bg = Color::Rgb(16, 20, 25);
-    let muted = Color::Rgb(142, 155, 166);
-    let green = Color::Rgb(133, 224, 179);
+    // Keep aligned with website/style.css: --bg, --text, --muted, --accent.
+    let bg = Color::Rgb(17, 29, 25);
+    let text = Color::Rgb(241, 226, 202);
+    let muted = Color::Rgb(178, 184, 167);
+    let accent = Color::Rgb(234, 183, 127);
     let area = frame.area();
     frame.render_widget(Block::default().style(Style::default().bg(bg)), area);
     let border = Block::default()
         .borders(Borders::ALL)
-        .border_style(Style::default().fg(green))
+        .border_style(Style::default().fg(accent))
         .title(" bohselecta ")
         .title_bottom(" LOCAL · NO ROUTING MODEL CALL ");
     let inner = border.inner(area);
@@ -61,12 +63,12 @@ fn render(frame: &mut Frame, request: &Request, selected: usize) {
     ])
     .split(inner);
     frame.render_widget(
-        Paragraph::new(" THE RIGHT MODEL. BACK TO WORK.").style(Style::default().fg(green).bold()),
+        Paragraph::new(" THE RIGHT MODEL. BACK TO WORK.").style(Style::default().fg(accent).bold()),
         rows[1],
     );
     frame.render_widget(
         Paragraph::new(format!(" {}", clean(&request.summary, 130)))
-            .style(Style::default().fg(Color::White))
+            .style(Style::default().fg(text))
             .wrap(Wrap { trim: false }),
         rows[2],
     );
@@ -91,7 +93,7 @@ fn render(frame: &mut Frame, request: &Request, selected: usize) {
                 Span::styled(
                     format!("{}{:10}", prefix, clean(&c.name, 12)),
                     Style::default()
-                        .fg(if i == selected { green } else { Color::White })
+                        .fg(if i == selected { accent } else { text })
                         .bold(),
                 ),
                 Span::styled(
@@ -109,7 +111,7 @@ fn render(frame: &mut Frame, request: &Request, selected: usize) {
     );
     frame.render_widget(
         Paragraph::new(" ↑↓ choose   Enter continue   Esc keep   q cancel")
-            .style(Style::default().fg(green)),
+            .style(Style::default().fg(accent)),
         rows[7],
     );
 }

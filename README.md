@@ -2,7 +2,7 @@
 
 A local model adviser inside Claude Code and Codex. It checks the task, weighs capability against relative cost, and suggests a suitable model before you spend the expensive one on a small job.
 
-**Public alpha · v0.3.0-alpha.3.** The Claude popup is the main experience. Automatic continuation is verified on Claude Code 2.1.282 and 2.1.283; other versions offer a manual continuation command. Model overrides apply to one task. Cross-provider handoff and live monetary pricing are not included.
+**Public alpha · v0.3.0-alpha.4.** The Claude popup is the main experience. Automatic continuation is verified on Claude Code 2.1.282 and 2.1.283; other versions offer a manual continuation command. Model overrides apply to one task. Cross-provider handoff and live monetary pricing are not included.
 
 [Website](https://irvdotdev.github.io/bohselecta/) · [Documentation](https://irvdotdev.github.io/bohselecta/docs.html) · [Releases](https://github.com/irvdotdev/bohselecta/releases)
 
@@ -11,7 +11,7 @@ A local model adviser inside Claude Code and Codex. It checks the task, weighs c
 Requires Node.js 22.18+ on the 22.x line, or Node.js 24+, including npm. For the popup, install tmux and sign in to Claude Code first. The installer includes the popup binary: no Rust, Git, sudo, or separate API key is needed.
 
 ```sh
-curl -fL https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.3/install.mjs -o /tmp/bohselecta-install.mjs
+curl -fL https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.4/install.mjs -o /tmp/bohselecta-install.mjs
 node /tmp/bohselecta-install.mjs
 ```
 
@@ -41,7 +41,7 @@ Requires Git, Node/npm, and Rust/Cargo for the popup build. tmux and signed-in C
 ```sh
 git clone https://github.com/irvdotdev/bohselecta.git
 cd bohselecta
-git checkout v0.3.0-alpha.3
+git checkout v0.3.0-alpha.4
 npm ci
 npm link
 bohselecta native refresh claude

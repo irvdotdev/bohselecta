@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0-alpha.4 — matching terminal and website colors (2026-09-28)
+
+- Match the Ratatui popup to the GitHub page: dark green background, warm cream text, muted sage descriptions, and amber selection and controls.
+- Keep the existing keyboard controls and model continuation behavior.
+
 ## 0.3.0-alpha.3 — first public alpha (2026-09-28)
 
 - Publish the MIT-licensed service source and source installation instructions.
