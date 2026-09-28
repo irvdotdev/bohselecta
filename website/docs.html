@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111d19">
+  <meta name="description" content="Choose a model, press Enter, keep building. Explore bohselecta’s Claude terminal popup, local model recommendations, setup, and changelog.">
+  <title>bohselecta — documentation &amp; changelog.</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header>
+      <a class="wordmark" href="index.html" aria-label="bohselecta home"><span class="prompt">&gt;_</span> bohselecta<span class="cursor" aria-hidden="true"></span></a>
+      <nav aria-label="Main navigation">
+        <a href="#how-it-works">how it works</a><a href="#how-to">how to</a><a href="#docs">docs</a><a href="#changelog">changelog</a>
+      </nav>
+      <span class="version">v0.2.2 <span class="dot" aria-hidden="true"></span> popup preview</span>
+    </header>
+
+    <main id="main">
+<section class="walkthrough section" id="how-it-works" aria-labelledby="works-title">
+        <div class="section-top"><span class="section-id">01 / THE IDEA</span><span class="muted">less deciding. more doing.</span></div>
+        <div class="walkthrough-grid">
+          <div>
+            <h2 id="works-title">Stay in your flow.</h2>
+            <p class="section-intro">Start on Sonnet. Suitable tasks run quietly. When another model is worth considering, bohselecta brings the choice to you.</p>
+            <ol class="steps">
+              <li><span class="step-number">01</span><div><h3>You write the task.</h3><p>As you normally would, in your terminal.</p></div></li>
+              <li><span class="step-number">02</span><div><h3>bohselecta weighs it up.</h3><p>Scope, difficulty, and relative cost. No paid routing call.</p></div></li>
+              <li><span class="step-number">03</span><div><h3>Choose. Enter. Carry on.</h3><p>Your task is saved. No copying it into another conversation.</p></div></li>
+            </ol>
+          </div>
+          <div class="terminal-wrap">
+            <div class="terminal">
+              <div class="terminal-bar"><span><i></i><i></i><i></i></span><span id="terminal-title">claude / current model: Opus</span><span aria-hidden="true">⌘</span></div>
+              <div class="terminal-tabs" role="group" aria-label="Choose an integration demo">
+                <button type="button" class="selected" data-client="popup" aria-pressed="true">Claude popup</button>
+                <button type="button" data-client="commands" aria-pressed="false">Claude commands</button>
+                <button type="button" data-client="codex" aria-pressed="false">Codex hooks</button>
+              </div>
+              <div class="terminal-body" id="flow-demo" tabindex="0" role="group" aria-label="Interactive flow demo. Arrow keys choose a model, Enter continues, Escape keeps Opus, q cancels.">
+                <p><span class="prompt">❯</span> Plan a todo app.</p>
+                <div id="popup-demo">
+                  <fieldset class="model-popup" id="model-picker">
+                    <legend>bohselecta <span>LOCAL</span></legend>
+                    <h3>The right model. Back to work.</h3>
+                    <p class="muted">Scope is uncertain. Compare a balanced model with a stronger option.</p>
+                    <button type="button" class="model-option selected" data-model="sonnet" aria-pressed="true"><span class="model-name"><span class="choice-cursor" aria-hidden="true">›</span> Sonnet</span><span class="model-detail">tier 2 <em>recommended</em></span></button>
+                    <button type="button" class="model-option" data-model="opus" aria-pressed="false"><span class="model-name"><span class="choice-cursor" aria-hidden="true">›</span> Opus</span><span class="model-detail">tier 3 <em>more capacity</em></span></button>
+                    <p class="cost-note">Relative cost tiers · your task stays saved</p>
+                    <div class="popup-actions"><button type="button" id="demo-continue">Continue ↵</button><button type="button" id="demo-keep">Keep Opus</button><button type="button" id="demo-cancel">Cancel</button></div>
+                  </fieldset>
+                  <div id="demo-outcome" class="demo-outcome" hidden><span class="prompt" aria-hidden="true">✓</span><h3 id="outcome-title"></h3><p id="outcome-detail"></p><button type="button" class="demo-reset">Try again ↺</button></div>
+                  <p class="terminal-foot">↑↓ choose · Enter continue · Esc keep · q cancel</p>
+                </div>
+                <div id="command-demo" hidden>
+                  <div class="terminal-result"><p><span class="prompt">→</span> <strong id="demo-model">Sonnet</strong> <span class="tag">recommended</span></p><p>Scope is uncertain. Compare a balanced model with a stronger option.</p></div>
+                  <p class="switch-command" id="demo-command">/boh:sonnet</p>
+                  <p class="muted" id="demo-alternative">Or /boh:opus for more capacity.</p>
+                  <p class="terminal-foot" id="demo-instruction">One command chooses the model and continues your saved task.</p>
+                </div>
+              </div>
+            </div>
+            <p class="caption"><span class="status-marker">INTERACTIVE DEMO</span> A simulation, not a connected Claude session. No task is sent to a model. Real Claude still shows its hook-stop notice when switching.</p>
+            <div class="sr-only" id="demo-announcement" role="status" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="status-note"><span class="prompt">i</span><p><strong>Working, with clear boundaries.</strong> The Claude popup is an opt-in preview, tested on Claude Code 2.1.282 with tmux 3.7c. Enter continues through a guarded terminal command. The command-only Claude preview and v0.2.2 hooks for Claude and Codex remain available. Cross-provider handoff is future work.</p></div>
+      </section>
+
+      <section class="section" id="how-to" aria-labelledby="howto-title">
+        <div class="section-top"><span class="section-id">02 / HOW TO</span><span class="muted">a few commands. you’re in.</span></div>
+        <h2 id="howto-title">One launch. Your usual Claude.</h2>
+        <p class="section-intro">You’ll need this project checked out, Node.js 22.18+, Claude Code 2.1.282 signed in, and tmux. Rust/Cargo builds the popup on first launch if its binary is missing.</p>
+        <div class="setup-grid">
+          <article class="setup-card"><span class="step-number">01 / INSTALL</span><h3>From the project folder.</h3><p>Install the locked JavaScript dependencies and make the command available.</p><div class="code-block"><pre><code>npm ci
+npm link</code></pre><button class="copy" type="button" aria-label="Copy installation commands">copy</button></div></article>
+          <article class="setup-card"><span class="step-number">02 / CHECK MODELS</span><h3>Know what’s available.</h3><p>Refresh Claude’s model catalog without running a task. Local routing uses this catalog for seven days.</p><div class="code-block"><pre><code>bohselecta native refresh claude</code></pre><button class="copy" type="button" aria-label="Copy model refresh command">copy</button></div></article>
+          <article class="setup-card"><span class="step-number">03 / GO</span><h3>Open Claude with the popup.</h3><p>Run from the folder you want to work in. Starts on Sonnet; suitable tasks continue quietly.</p><div class="code-block"><pre><code>bohselecta popup claude</code></pre><button class="copy" type="button" aria-label="Copy popup launch command">copy</button></div></article>
+        </div>
+        <div class="inline-tip"><span class="prompt">↳</span><p>Want to see it in action? Launch with <code>bohselecta popup claude --model opus</code>, then type <code>todo app</code>. Pick Sonnet and press Enter. Escape keeps Opus; q cancels.</p></div>
+        <div class="inline-tip"><span class="prompt">↳</span><p>Prefer no tmux or Rust? Use <code>bohselecta preview claude</code> for short continuation commands. For Codex’s existing native flow, run <code>bohselecta install codex</code>, restart Codex, and review the entries in <code>/hooks</code>.</p></div>
+      </section>
+
+      <section class="section" id="docs" aria-labelledby="docs-title">
+        <div class="section-top"><span class="section-id">03 / DOCUMENTATION</span><span class="muted">read the small print. it’s small.</span></div>
+        <div class="docs-heading"><h2 id="docs-title">The useful bits.</h2><span class="version">v0.2.2 + UNRELEASED PREVIEWS</span></div>
+        <div class="docs-grid">
+          <div class="command-reference"><h3><span class="prompt">$</span> Command reference</h3>
+            <dl>
+              <div><dt><code>bohselecta popup claude</code></dt><dd>Open the Ratatui chooser in a dedicated tmux session. Add <code>--model opus</code> or <code>--cwd /path/to/project</code> if needed.</dd></div>
+              <div><dt><code>bohselecta preview claude</code></dt><dd>Open the command-only preview on Sonnet. Use an offered <code>/boh:sonnet</code>, <code>/boh:opus</code>, or <code>/boh:haiku</code> command to continue a saved task.</dd></div>
+              <div><dt><code>boh: keep · boh: cancel</code></dt><dd>Inside either Claude preview, continue a saved task on the current model or discard it. <code>boh: off</code>, <code>boh: on</code>, and <code>boh: status</code> control advice.</dd></div>
+              <div><dt><code>bohselecta install codex</code></dt><dd>Install the existing Codex hooks. Use the suggested model picker, then resubmit your task. The Ratatui popup is Claude-only.</dd></div>
+              <div><dt><code>bohselecta native status</code></dt><dd>Check installed hooks, client versions, and catalog freshness. Does not report whether a popup session is open.</dd></div>
+              <div><dt><code>bohselecta native refresh claude</code></dt><dd>Refresh available Claude models without executing a task.</dd></div>
+              <div><dt><code>bohselecta history</code></dt><dd>Review tasks, recommendations, choices, and outcomes. <code>bohselecta history delete ID</code> removes one local record.</dd></div>
+              <div><dt><code>bohselecta --help</code></dt><dd>Explore all commands, including native hook installation and removal.</dd></div>
+            </dl>
+          </div>
+          <div class="doc-topics">
+            <details open><summary>What happens when I press Enter?<span aria-hidden="true">+</span></summary><div class="detail-content"><p>The popup closes. If you picked another model, a helper waits for Claude’s matching paused task and an empty prompt, then submits its direct model command. The saved task is claimed once and continues in the same conversation.</p><p>Choosing the current model or pressing Escape continues the original prompt. q and Ctrl-C cancel; 90 seconds without a choice also cancels.</p></div></details>
+            <details><summary>No popup? It may already be the right model.<span aria-hidden="true">+</span></summary><div class="detail-content"><p>The preview starts on Sonnet. Ordinary work such as <code>build todo app</code> can run immediately because Sonnet is already the first recommendation. That is quiet routing, not a missing hook.</p><p>To exercise the chooser, launch <code>bohselecta popup claude --model opus</code> and try <code>todo app</code>. Check <code>bohselecta history</code> in another terminal to see whether a prompt was recorded.</p></div></details>
+            <details><summary>What’s experimental?<span aria-hidden="true">+</span></summary><div class="detail-content"><p>The popup uses terminal automation and currently requires Claude Code 2.1.282. It is tested with tmux 3.7c. It does not add a native model-switch API. Don’t type ahead during the handoff; if readiness isn’t confirmed within 12 seconds, use the displayed continuation command.</p><p>The model override lasts one turn. Later prompts are checked again. Haiku is excluded in auto and plan permission modes. The popup does not change your saved default or tool permissions.</p></div></details>
+            <details><summary>Why is there still a hook notice?<span aria-hidden="true">+</span></summary><div class="detail-content"><p>Claude displays “Operation stopped by hook” when bohselecta pauses the original prompt to switch models. The popup removes manual command entry, but that client-owned notice and the submitted command remain visible.</p><p>Disabled, missing, or timed-out hooks may let Claude continue on its current model. This is model advice, not a guaranteed spending limit.</p></div></details>
+            <details><summary>How does it choose and learn?<span aria-hidden="true">+</span></summary><div class="detail-content"><p>Local rules classify scope and difficulty, filter for sufficient capability, and prefer the lowest configured cost tier. Uncertainty can produce two options. A suitable current model continues quietly.</p><p>Rate finished tasks with <code>boh: feedback good</code>, <code>boh: feedback stronger</code>, <code>boh: feedback cheaper</code>, or <code>boh: feedback unsure</code>. Stronger feedback can raise the capability floor. Successful-choice reuse requires matching model evidence; preview completion hooks do not independently verify the execution model.</p></div></details>
+            <details><summary>Does it know actual prices?<span aria-hidden="true">+</span></summary><div class="detail-content"><p>It uses relative cost tiers, not live prices or measured savings. Tier 2 does not mean twice the price of tier 1. Native routing makes no paid classification call.</p><p>Dated pricing, token and cache estimates, and separate subscription/API treatment are planned. Switching providers is also future work.</p></div></details>
+            <details><summary>Where does my data go?<span aria-hidden="true">+</span></summary><div class="detail-content"><p>Task text, context excerpts, outputs, choices, and feedback stay in the local store at <code>~/.local/share/bohselecta</code>. Files are private to your OS user, not encrypted. Default retention is 90 days. The popup briefly uses a private temporary file with a task excerpt.</p><p>Routing is local. When a task continues, Claude sends it through its usual provider and retains its own transcript. Saved continuations expire after 24 hours and are scoped to the same session and folder.</p></div></details>
+            <details><summary>Can I still use normal Claude or Codex?<span aria-hidden="true">+</span></summary><div class="detail-content"><p>Yes. The popup plugin is loaded only for that launch. Exit and open your usual client to return to your existing setup. The command-only Claude preview needs no tmux or Rust.</p><p>The v0.2.2 native hooks support both clients with manual model changes and task resubmission. Only the Claude popup submits the chosen continuation command for you.</p><p class="reference-links"><a href="https://code.claude.com/docs/en/skills#frontmatter-reference">Claude skill models ↗</a><a href="https://ratatui.rs/">Ratatui ↗</a></p></div></details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="changelog" aria-labelledby="changelog-title">
+        <div class="section-top"><span class="section-id">04 / CHANGELOG</span><span class="muted">small steps, recorded.</span></div>
+        <h2 id="changelog-title">What’s changed.</h2>
+        <div class="release"><div class="release-label"><span class="status-marker">WORKING PREVIEW</span><span class="muted">Unreleased / Claude only</span></div><div><h3>Choose. Enter. Back to work.</h3><ul><li>Ratatui popup over Claude’s terminal, hosted in a dedicated tmux session.</li><li>Enter chooses and continues; Escape keeps the current model; q cancels.</li><li>Sonnet by default, quiet routing for suitable tasks, and short commands as a fallback.</li><li>Continuation tied to the exact saved task, with checks for the correct pane and an empty prompt.</li></ul><p>Live tests verified Sonnet execution, keeping Opus, and cancellation. 67 JavaScript/TypeScript tests and 2 Rust tests pass. Tested on Claude Code 2.1.282 and tmux 3.7c; hook notices remain visible.</p></div></div>
+        <div class="release"><div class="release-label"><span class="status-marker">NEXT</span><span class="muted">Unreleased / planned</span></div><div><h3>Make the cost comparison sharper.</h3><p>Verified pricing, estimates for tokens and caching, and separate treatment of subscriptions and API charges. Recommendations across providers and automatic handoff remain future work.</p></div></div>
+        <div class="release"><div class="release-label"><span class="release-version">v0.2.2</span><span class="muted">Show uncertain choices</span></div><div><h3>Compare before you spend.</h3><p>New tasks such as “todo app” now show two model options when a cheaper candidate is available. Keeping the current model is recorded correctly; follow-ups and long contexts retain their switching guard.</p></div></div>
+        <div class="release"><div class="release-label"><span class="release-version">v0.2.1</span><span class="muted">Claude model detection</span></div><div><h3>Know which model you’re using.</h3><ul><li>Track the configured model across working-directory changes.</li><li>Recover missing startup model information through Claude’s local status line.</li><li>Preserve existing custom status lines and restore them on uninstall.</li></ul></div></div>
+        <div class="release"><div class="release-label"><span class="release-version">v0.2.0</span><span class="muted">Native terminal integration</span></div><div><h3>Inside your usual conversation.</h3><ul><li>Install native prompt and lifecycle hooks for Claude Code and Codex.</li><li>Check tasks locally and suggest model-switch commands before execution.</li><li>Recognise resubmitted tasks and record recommendations, outcomes, and feedback.</li><li>Add in-conversation controls for status, pausing, and feedback.</li></ul></div></div>
+        <div class="release"><div class="release-label"><span class="release-version">v0.1.0</span><span class="muted">First working prototype</span></div><div><h3>The routing foundation.</h3><ul><li>Task classification and model recommendations for either client.</li><li>Local history, feedback, and reuse of successful choices.</li><li>Remembered setup, a terminal launcher, and a macOS double-click launcher.</li><li>Model overrides, session resuming, and structured JSON recommendations.</li><li>Shell launcher fix for running <code>bash bohselecta</code>.</li></ul></div></div>
+      </section>
+    </main>
+    <footer><a class="wordmark" href="index.html"><span class="prompt">&gt;_</span> bohselecta</a><span>pick thoughtfully. build something.</span><a href="#main">back to top ↑</a></footer>
+  </div>
+  <div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body>
+</html>

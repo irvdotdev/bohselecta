@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111d19">
+  <meta name="description" content="bohselecta suggests a model that fits your task and budget, inside your Claude terminal. Choose, press Enter, keep building.">
+  <title>bohselecta — right model. Less overkill.</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body class="landing">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header>
+      <a class="wordmark" href="index.html" aria-label="bohselecta home"><span class="prompt">&gt;_</span> bohselecta<span class="cursor" aria-hidden="true"></span></a>
+      <nav aria-label="Main navigation"><a href="docs.html">Docs</a><a href="docs.html#changelog">Changelog</a></nav>
+    </header>
+    <main id="main" class="landing-main">
+      <section class="landing-copy" aria-labelledby="hero-title">
+        <p class="landing-label">CLAUDE TERMINAL · POPUP PREVIEW</p>
+        <h1 id="hero-title">Right model.<br><span>Less overkill.</span></h1>
+        <p class="landing-intro">Your typo doesn’t need the most expensive model. bohselecta suggests one that fits your task, inside Claude.</p>
+        <p class="landing-detail">Choose. Press Enter. Keep building.<br>Already on the right model? It stays quiet.</p>
+        <a class="button primary" href="docs.html#how-to">Set up bohselecta <span aria-hidden="true">↗</span></a>
+        <div class="landing-command"><span>Already installed?</span><div class="code-block"><pre><code>bohselecta popup claude</code></pre><button class="copy" type="button" aria-label="Copy popup launch command">copy</button></div></div>
+      </section>
+      <section class="terminal-wrap" aria-label="Interactive Claude popup demo">
+        <div class="terminal">
+          <div class="terminal-bar"><span><i></i><i></i><i></i></span><span>claude / current: Opus</span></div>
+          <div class="terminal-body" id="flow-demo" tabindex="0" role="group" aria-label="Demo. Arrow keys choose a model, Enter continues, Escape keeps Opus, q cancels.">
+            <p><span class="prompt">❯</span> Build a todo app.</p>
+            <fieldset class="model-popup" id="model-picker">
+              <legend>bohselecta</legend>
+              <h3>Sonnet fits this task.</h3>
+              <button type="button" class="model-option selected" data-model="sonnet" aria-pressed="true"><span class="model-name"><span class="choice-cursor" aria-hidden="true">›</span> Sonnet</span><span class="model-detail">lower cost</span></button>
+              <button type="button" class="model-option" data-model="opus" aria-pressed="false"><span class="model-name"><span class="choice-cursor" aria-hidden="true">›</span> Opus</span><span class="model-detail">more capacity</span></button>
+              <div class="popup-actions"><button type="button" id="demo-continue">Continue ↵</button><button type="button" id="demo-keep">Keep Opus</button><button type="button" id="demo-cancel">Cancel</button></div>
+            </fieldset>
+            <div id="demo-outcome" class="demo-outcome" hidden><span class="prompt" aria-hidden="true">✓</span><h3 id="outcome-title"></h3><p id="outcome-detail"></p><button type="button" class="demo-reset">Try again ↺</button></div>
+          </div>
+        </div>
+        <p class="caption">Interactive demo · no model calls</p>
+        <div class="sr-only" id="demo-announcement" role="status" aria-live="polite"></div>
+      </section>
+    </main>
+    <footer><span>Local routing. Relative cost tiers, not live prices.</span><a href="docs.html#docs">Preview details ↗</a></footer>
+  </div>
+  <div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body>
+</html>

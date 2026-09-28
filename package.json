@@ -1,0 +1,10 @@
+{
+  "name": "bohselecta-website",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=22.18.0"},
+  "scripts": {
+    "site": "node scripts/serve-site.mjs",
+    "site:build": "node scripts/build-site.mjs"
+  }
+}
