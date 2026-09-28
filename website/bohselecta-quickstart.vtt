@@ -1,0 +1,24 @@
+WEBVTT
+
+00:00.000 --> 00:05.500
+Download and run the installer. This demo uses an isolated folder;
+Node, tmux, and signed-in Claude Code are already installed.
+
+00:05.500 --> 00:08.000
+Refresh the available Claude models once.
+
+00:08.000 --> 00:10.500
+Launch bohselecta popup claude --model opus.
+Opus demonstrates a switch; Sonnet is the default.
+
+00:10.500 --> 00:19.000
+A real Ratatui popup compares Sonnet and Opus.
+Use arrow keys to choose Sonnet, then press Enter.
+
+00:19.000 --> 00:23.000
+Claude shows its hook notice. Bohselecta submits
+the saved task's Sonnet continuation command.
+
+00:23.000 --> 00:27.000
+Claude answers in the same conversation.
+This recorded task ran on Sonnet.

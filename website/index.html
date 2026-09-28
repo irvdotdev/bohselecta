@@ -34,25 +34,17 @@ bohselecta native refresh claude</code></pre><button class="copy" type="button" 
           <div class="code-block launch"><pre><code>bohselecta popup claude</code></pre><button class="copy" type="button" aria-label="Copy launch command">copy</button></div>
         </section>
         <section id="how-it-works" aria-labelledby="demo-title">
-          <h2 id="demo-title">See it work.</h2>
+          <h2 id="demo-title">Watch it work.</h2>
           <p class="requirements">Write a task. Pick a model. Keep building.<br>Already a good fit? No popup.</p>
-        <div class="terminal">
-          <div class="terminal-bar"><span><i></i><i></i><i></i></span><span>claude / current: Opus</span></div>
-          <div class="terminal-body" id="flow-demo" tabindex="0" role="group" aria-label="Demo. Arrow keys choose a model, Enter continues, Escape keeps Opus, q cancels.">
-            <p><span class="prompt">❯</span> Build a todo app.</p>
-            <fieldset class="model-popup" id="model-picker">
-              <legend>bohselecta</legend>
-              <h3>Sonnet fits this task.</h3>
-              <button type="button" class="model-option selected" data-model="sonnet" aria-pressed="true"><span class="model-name"><span class="choice-cursor" aria-hidden="true">›</span> Sonnet</span><span class="model-detail">lower cost</span></button>
-              <button type="button" class="model-option" data-model="opus" aria-pressed="false"><span class="model-name"><span class="choice-cursor" aria-hidden="true">›</span> Opus</span><span class="model-detail">more capacity</span></button>
-              <div class="popup-actions"><button type="button" id="demo-continue">Continue ↵</button><button type="button" id="demo-keep">Keep Opus</button><button type="button" id="demo-cancel">Cancel</button></div>
-            </fieldset>
-            <div id="demo-outcome" class="demo-outcome" hidden><span class="prompt" aria-hidden="true">✓</span><h3 id="outcome-title"></h3><p id="outcome-detail"></p><button type="button" class="demo-reset">Try again ↺</button></div>
+          <div class="video-shell">
+          <button class="video-start" id="watch-video" type="button" aria-label="Watch the 27-second terminal walkthrough"><img src="popup-poster.png" alt="The real Ratatui popup: green text, Sonnet and Opus cost tiers, and keyboard controls."><span>▶ Watch 27 seconds</span></button>
+          <video class="walkthrough-video" hidden controls playsinline preload="none" poster="popup-poster.png" width="1200" height="820" aria-label="27-second real terminal recording: install bohselecta, open Claude, choose Sonnet, and continue the saved task.">
+            <source src="bohselecta-quickstart.mp4" type="video/mp4">
+            <track kind="captions" src="bohselecta-quickstart.vtt" srclang="en" label="English">
+            <a href="bohselecta-quickstart.mp4">Download the installation and usage video.</a>
+          </video>
           </div>
-        </div>
-        <p class="caption">Interactive demo · no model calls</p>
-        <div class="sr-only" id="demo-announcement" role="status" aria-live="polite"></div>
-
+          <p class="caption">27 seconds · real terminal · pauses shortened</p>
           <p class="hint">Automatic handoff on Claude 2.1.282–283. Other versions give you a command.</p>
         </section>
       </div>
