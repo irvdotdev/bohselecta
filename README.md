@@ -2,11 +2,13 @@
 
 [![A blue furry DJ playing vinyl in a warmly lit hip-hop club.](https://irvdotdev.github.io/bohselecta/dj-session.png)](https://irvdotdev.github.io/bohselecta/)
 
-A local model adviser inside Claude Code and Codex. It checks the task, weighs capability against relative cost, and suggests a suitable model before you spend the expensive one on a small job.
+The right model for your task, inside Claude Code. Local recommendations, a terminal chooser, and an optional default launch. Codex is supported through manual model-switch suggestions.
+
+[![Tests](https://github.com/irvdotdev/bohselecta/actions/workflows/test.yml/badge.svg)](https://github.com/irvdotdev/bohselecta/actions/workflows/test.yml) [![Release checks](https://github.com/irvdotdev/bohselecta/actions/workflows/release.yml/badge.svg)](https://github.com/irvdotdev/bohselecta/actions/workflows/release.yml)
 
 **Public alpha · v0.3.0-alpha.7.** The Claude popup is the main experience. Automatic continuation is verified on Claude Code 2.1.282 and 2.1.283; other versions offer a manual continuation command. Model overrides apply to one task. Cross-provider handoff and live monetary pricing are not included.
 
-[Website](https://irvdotdev.github.io/bohselecta/) · [Documentation](https://irvdotdev.github.io/bohselecta/docs.html) · [Releases](https://github.com/irvdotdev/bohselecta/releases)
+[Website](https://irvdotdev.github.io/bohselecta/) · [Documentation](docs/README.md) · [Releases](https://github.com/irvdotdev/bohselecta/releases)
 
 ## Install
 
@@ -14,9 +16,17 @@ A local model adviser inside Claude Code and Codex. It checks the task, weighs c
 
 ```sh
 brew install irvdotdev/tap/bohselecta
+bohselecta native refresh claude
+bohselecta setup claude
 ```
 
-Homebrew installs Node and tmux and includes the prebuilt popup. Sign in to Claude Code separately. Run `bohselecta setup claude` to optionally make plain `claude` open the chooser. Update with `brew update && brew upgrade bohselecta`.
+Homebrew installs Node and tmux; sign in to Claude Code first. Answer **yes** during setup, open a new terminal in your project folder, and run:
+
+```sh
+claude
+```
+
+Skipped setup? Use `bohselecta popup claude` instead. No Rust is needed with the release packages. See [default launch and undo](#default-launch-and-undo) below.
 
 ### npm / npx
 
@@ -45,25 +55,23 @@ Requires the same Node/npm setup as npm installation. The installer verifies SHA
 
 Prebuilt binaries support macOS 15+ and compatible glibc Linux (Ubuntu 22.04+) on arm64/x64. Windows and Alpine/musl are not supported. No Rust, Git, sudo, or separate API key is required for these installation methods. Use one installation method at a time to avoid multiple commands on PATH.
 
-## Make it the default
+## Default launch and undo
 
-```sh
-bohselecta native refresh claude
-bohselecta setup claude
-```
+`bohselecta setup claude` offers a removable shell shortcut. It backs up your zsh or bash profile and only changes it after you opt in. Open a new terminal to activate it. It respects zsh's `ZDOTDIR` and configures bash interactive and login shells.
 
-Answer **yes**, open a new terminal, then type `claude` from your project folder. Setup adds a backed-up, removable shortcut to your zsh or bash profile. It respects zsh's `ZDOTDIR` and configures bash interactive and login shells. Commands with arguments (including `claude --resume`, `--model`, and `-p`) and non-interactive calls use ordinary Claude without the popup. `command claude` bypasses the shortcut.
+| Command | Behavior |
+| --- | --- |
+| `claude` after setup | Open Claude with the popup enabled |
+| `claude --resume`, `claude --model …`, `claude -p …` | Ordinary Claude, without the popup |
+| `command claude` | Bypass the shortcut for this launch |
+| `bohselecta default claude status` | Check profile configuration |
+| `bohselecta default claude off` | Remove the shortcut; then open a new terminal |
 
-Check with `bohselecta default claude status`. Undo with `bohselecta default claude off`, then open a new terminal (or run `unset -f claude` in the current shell). Existing shortcuts, edited bohselecta blocks, and linked shell profiles are left untouched with an explanation. Homebrew and npm never edit your shell profile during installation; the direct installer offers setup only in an interactive terminal.
+Piped calls keep using ordinary Claude. Existing shortcuts, edited bohselecta blocks, and linked shell profiles are left untouched with an explanation. Homebrew and npm do not edit profiles during installation; the direct installer offers setup only in an interactive terminal. After disabling, `unset -f claude` also clears the function from the current shell.
 
-## Run inside Claude
+## How it works
 
-From the folder you want to work in:
-
-```sh
-bohselecta native refresh claude
-bohselecta popup claude
-```
+Start with `claude` after setup, or `bohselecta popup claude` directly. Write your task in Claude as usual.
 
 [![The real bohselecta terminal popup, with Sonnet and Opus choices in amber and cream on dark green.](https://irvdotdev.github.io/bohselecta/popup-poster.png)](https://irvdotdev.github.io/bohselecta/#how-it-works)
 
@@ -97,7 +105,7 @@ For Homebrew, run `brew update && brew upgrade bohselecta`, or `brew uninstall b
 
 For installer installations, download the installer from the desired release and run it again, then restart your popup session. Previous release directories are retained; see [installation, updates, and removal](docs/INSTALL.md). Source installations should check out the desired tag, run `npm ci`, and restart.
 
-The installer does not enable persistent hooks. If you installed those separately, run `bohselecta uninstall` before removing the program. Removing program files does not remove local task history.
+Before removing the program, run `bohselecta default claude off` if you enabled the shortcut, then open a new terminal. The installer does not enable persistent hooks. If you installed those separately, run `bohselecta uninstall` before removing the program. Removing program files does not remove local task history.
 
 ## Data and limits
 
@@ -106,6 +114,8 @@ Routing for the popup and native hooks runs locally without a paid classifier ca
 The popup still shows Claude’s hook-stop notice. Production completion hooks do not independently verify the execution model. This is model advice, not a guaranteed budget cap. See [privacy and native behavior](docs/NATIVE.md), [the original standalone interface](docs/STANDALONE.md), and [changelog](CHANGELOG.md).
 
 ## Develop
+
+See [contributing](CONTRIBUTING.md) for checks, bug reports, and the release process.
 
 ```sh
 npm ci

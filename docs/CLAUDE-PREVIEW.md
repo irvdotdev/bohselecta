@@ -34,7 +34,7 @@ To choose a different starting model or folder:
 bohselecta preview claude --cwd /path/to/project --model opus
 ```
 
-`--model` overrides the Sonnet starting default for this launch; it does not disable suggestions. The launcher loads the `boh` plugin only for this process, suspending only bohselecta's older Claude router to avoid duplicate advice. It does not install a permanent plugin, change tool permissions, or edit your saved model default. Exit and open `claude` normally to return to the existing integration. Restart an older preview session to get the new plugin name and commands.
+`--model` overrides the Sonnet starting default for this launch; it does not disable suggestions. The launcher loads the `boh` plugin only for this process, suspending only bohselecta's older Claude router to avoid duplicate advice. It does not install a permanent plugin, change tool permissions, or edit your saved model default. Exit and run `command claude` to bypass the optional shell shortcut and return to ordinary Claude. Restart an older preview session to get the new plugin name and commands.
 
 ## Controls
 

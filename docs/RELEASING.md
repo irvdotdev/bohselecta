@@ -4,8 +4,8 @@
 2. Run `npm ci`, `npm run check`, `npm test`, and `cargo test --locked --manifest-path prototypes/popup/Cargo.toml`.
 3. Commit and push. Create a version tag matching the package version, such as `v0.3.0-alpha.7`, then push that tag.
 4. The release workflow tests Node 22.18 and 24, builds and tests native popup binaries on macOS arm64/x64 and Linux arm64/x64, and tests clean installation on each platform.
-5. Only after every job passes, the workflow publishes a GitHub prerelease containing the source archive, installer, four binaries, and SHA256SUMS. Tags and existing release assets should not be overwritten; corrections get a new version.
-6. Download the published installer and test with an isolated `--prefix`, then update the website setup links.
+5. Only after every job passes, the workflow publishes a GitHub prerelease containing the source archive, installer, four binaries, compiled npm tarball, Homebrew formula, and SHA256SUMS. Tags and existing release assets should not be overwritten; corrections get a new version.
+6. Download the published installer and test with an isolated `--prefix`, then update the README, installation guides, website, and release notes. Verify the Homebrew updater picked up the release and its clean-install tests passed. Keep historical video recording versions accurate.
 
 The source archive uses an explicit list and excludes task history, local settings, website artwork, dependencies, and build outputs. GitHub Pages builds only the static website assets. Software is MIT licensed; supplied website artwork is excluded.
 

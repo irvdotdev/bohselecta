@@ -1,14 +1,12 @@
 # bohselecta inside Claude Code and Codex
 
-Version 0.2.2 checks tasks inside the clients you already use. Launch `claude` or `codex` normally. There is no separate bohselecta conversation to open.
+This guide covers the older persistent hook integration: manual model-switch suggestions inside Claude Code and Codex. For the recommended Claude chooser and optional plain-`claude` launch, use the [popup guide](CLAUDE-POPUP.md). These are separate integrations.
 
 ## Install once
 
-From this checkout, with Node.js 22.18+ installed:
+Install the [current release](../README.md#install), sign in to the clients you want to use, then run:
 
 ```sh
-npm ci
-npm link
 bohselecta install
 ```
 
@@ -20,7 +18,7 @@ Install only one client with `bohselecta install claude` or `bohselecta install 
 
 ## Everyday use
 
-1. Open `claude` or `codex` in your project.
+1. Open `command claude` or `codex` in your project. `command claude` bypasses the optional popup shortcut so you can use this manual hook flow.
 2. Write a task as usual.
 3. When the model is suitable, work continues. For a confident downgrade or a needed capability upgrade, bohselecta pauses with a recommendation. An uncertain new task with a cheaper candidate presents two options before execution.
 4. In Claude Code, use the suggested command, such as `/model haiku`. In Codex, enter `/model`, select the suggested model, and choose the suggested effort.

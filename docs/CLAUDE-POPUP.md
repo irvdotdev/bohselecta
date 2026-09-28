@@ -24,6 +24,17 @@ Use arrow keys and **Enter** to choose and continue. **Escape** keeps the curren
 
 ## Setup
 
+```sh
+brew install irvdotdev/tap/bohselecta
+bohselecta native refresh claude
+bohselecta setup claude
+```
+
+Opt in, open a new terminal, then type `claude` in your project folder. The optional zsh/bash shortcut only routes plain interactive `claude` through the popup. Commands with arguments, such as `claude --resume`, use ordinary Claude. Skip setup and use `bohselecta popup claude` if you prefer.
+
+Check with `bohselecta default claude status`. Undo with `bohselecta default claude off`, then open a new terminal. See [installation](INSTALL.md) for other methods.
+
+
 Install the [public alpha](../README.md#install). It needs signed-in Claude Code, tmux, Node/npm, and the Ratatui binary included by the installer. Automatic continuation is validated on **2.1.282 and 2.1.283**; other versions still show the chooser and provide a task-bound command to enter after selecting a different model. The installer uses a prebuilt popup and needs no Rust. First launch from a source checkout uses Cargo to build the locked Rust dependencies if the binary is missing or older than the Rust source; Rust/Cargo must be installed for that build. The command checks the Claude version and disables automatic typing on unvalidated versions. It does not prevent the popup from opening.
 
 The launcher starts on Sonnet, so most ordinary work needs no popup. To see a downgrade suggestion, start on Opus:
@@ -73,7 +84,7 @@ npm test
 
 ## When no popup appears
 
-- Launch with `bohselecta popup claude`; ordinary `claude` and `bohselecta preview claude` do not open Ratatui.
+- Launch with `bohselecta popup claude`, or plain `claude` after opting in with `bohselecta setup claude` and opening a new terminal. Check `bohselecta default claude status` if the shortcut is missing. Commands with arguments and `bohselecta preview claude` do not open Ratatui.
 - Type `boh: status` inside Claude to see popup mode, current model, and whether the last task kept its model. Prompts such as `an app` may continue quietly on Sonnet.
 - To exercise a switch, launch `bohselecta popup claude --model opus` and submit `an app`.
 - Focus the Claude pane in one writable tmux client. The chooser fits the terminal, down to 46 columns × 15 rows. When it cannot open, the hook gives a reason and preserves the saved-task commands.

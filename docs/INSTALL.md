@@ -40,6 +40,8 @@ Restart the popup to load the new version and version-specific continuation mode
 
 ## Removal
 
+If you enabled default launch, first run `bohselecta default claude off` and open a new terminal (or `unset -f claude` in the current shell). This removes only the managed shortcut and preserves other profile edits.
+
 If you enabled persistent native hooks, first run `bohselecta uninstall`. Exit running bohselecta sessions. For an installation using the default prefix, remove only these program paths:
 
 ```sh
