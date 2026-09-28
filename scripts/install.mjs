@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 import {createHash, randomUUID} from 'node:crypto';
-import {chmodSync, existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readlinkSync, renameSync, rmSync, symlinkSync, writeFileSync} from 'node:fs';
+import {chmodSync, existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readlinkSync, realpathSync, renameSync, rmSync, symlinkSync, writeFileSync} from 'node:fs';
 import {homedir} from 'node:os';
 import {dirname, join, resolve} from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
-export const VERSION='0.3.0-alpha.2';
+export const VERSION='0.3.0-alpha.3';
 export function compatibleNode(version) {
  const [major,minor]=version.split('.').map(Number);
  return major===22 && minor>=18 || major>=24;
@@ -66,7 +66,7 @@ export async function install({prefix=join(homedir(),'.local'),base=`https://git
   if(!activated)rmSync(release,{recursive:true,force:true});
  }
 }
-if(process.argv[1] && import.meta.url===pathToFileURL(resolve(process.argv[1])).href) {
+if(process.argv[1] && import.meta.url===pathToFileURL(realpathSync(process.argv[1])).href) {
  const args=process.argv.slice(2);
  if(args.includes('--help'))console.log('node install.mjs [--prefix PATH]\nInstalls bohselecta under ~/.local by default. No sudo; no shell-profile or client-settings edits.');
  else if(args.length && !(args.length===2 && args[0]==='--prefix')) {console.error('Usage: node install.mjs [--prefix PATH]');process.exitCode=1;}

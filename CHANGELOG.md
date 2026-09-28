@@ -1,12 +1,14 @@
 # Changelog
 
-## 0.3.0-alpha.2 — first public alpha (2026-09-28)
+## 0.3.0-alpha.3 — first public alpha (2026-09-28)
 
 - Publish the MIT-licensed service source and source installation instructions.
 - Add a user-local installer with verified release checksums and prebuilt macOS/Linux popup binaries.
 - Verify clean installation, failed-update preservation, and reinstall with retained task history.
 - Test Node 22.18 and 24, and build native arm64/x64 popup binaries in CI.
-- Close local installer-test connections explicitly so slow dependency installation cannot race a keep-alive timeout. The alpha.1 tag was a pre-publication build; alpha.2 is the downloadable release.
+- Close local installer-test connections explicitly so slow dependency installation cannot race a keep-alive timeout. The alpha.1 tag was a pre-publication build.
+
+- Fix direct installer invocation through symlinks and macOS `/tmp` aliases. Use alpha.3 or later; alpha.2 could exit without installing when invoked through an aliased path.
 
 ### Claude popup and quieter integration
 

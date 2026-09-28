@@ -1,9 +1,11 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {mkdtempSync,mkdirSync,writeFileSync,readFileSync,rmSync} from 'node:fs';
+import {mkdtempSync,mkdirSync,writeFileSync,readFileSync,rmSync,symlinkSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
+import {execFileSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
 import {compatibleNode,verify,install} from '../scripts/install.mjs';
 test('installer requires a Node version with supported TypeScript loading',()=>{
  for(const version of ['22.18.0','22.20.0','24.0.0','26.6.0'])assert.ok(compatibleNode(version));
@@ -25,4 +27,11 @@ test('installer refuses unrelated commands without modifying them',async t=>{
 test('installer rejects unsupported platforms and insecure release servers before downloading',async()=>{
  await assert.rejects(install({platform:'win32'}),/supports macOS and Linux/);
  await assert.rejects(install({base:'http://example.com'}),/require HTTPS/);
+});
+
+test('downloaded installer runs as a command through symlinks and macOS tmp aliases',t=>{
+ const dir=mkdtempSync(join(tmpdir(),'boh-installer-cli-'));t.after(()=>rmSync(dir,{recursive:true,force:true}));
+ const entry=join(dir,'downloaded-install.mjs');
+ symlinkSync(fileURLToPath(new URL('../scripts/install.mjs',import.meta.url)),entry);
+ assert.match(execFileSync(process.execPath,[entry,'--help'],{encoding:'utf8'}),/Installs bohselecta/);
 });
