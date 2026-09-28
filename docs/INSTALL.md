@@ -2,7 +2,7 @@
 
 **Easiest setup:** `brew install irvdotdev/tap/bohselecta` installs Node, tmux, and the prebuilt popup. Then run `bohselecta native refresh claude` and `bohselecta setup claude`. Opt in, open a new terminal, and type `claude`. Or skip setup and launch with `bohselecta popup claude`. Undo the shortcut with `bohselecta default claude off` and open a new terminal. Update with `brew update && brew upgrade bohselecta`.
 
-For npm and npx release-tarball commands, see the [main installation guide](../README.md#npm--npx). The sections below describe the direct installer.
+For Homebrew instructions, see the [main installation guide](../README.md#install). The sections below describe the direct installer.
 
 Follow the current [README](../README.md#install) for the pinned public-alpha installer and the source-checkout alternative.
 
@@ -30,7 +30,7 @@ The installer does not edit client settings or unrelated commands. In an interac
 export PATH="$HOME/.local/bin:$PATH"
 ```
 
-`command -v bohselecta` shows which installation your shell will use. If an older npm-linked installation wins, put `~/.local/bin` first in PATH or run `~/.local/bin/bohselecta` directly.
+`command -v bohselecta` shows which installation your shell will use. If an older source-linked installation wins, put `~/.local/bin` first in PATH or run `~/.local/bin/bohselecta` directly.
 
 ## Updates
 

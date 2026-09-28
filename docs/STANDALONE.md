@@ -33,7 +33,7 @@ bohselecta codex
 bohselecta claude --cwd /path/to/repository
 ```
 
-For a fresh installation, run `npm install` and `npm link` from this project once. Without installing the command globally, run `npm start` from this project or use the double-click launcher. `bohselecta --help` lists all commands; `bohselecta doctor` checks installed clients.
+For a fresh installation, use [Homebrew or the direct installer](../README.md#install). Developers can run `./bin/bohselecta` from a source checkout after installing its dependencies with `npm ci`. `bohselecta --help` lists all commands; `bohselecta doctor` checks installed clients.
 
 The standalone launcher does not install hooks itself. Use `bohselecta install` to enable the native integration described above; the launcher skips those hooks to avoid double routing. It provides its own small terminal interface around the real clients' agent runtimes. Client configuration, credentials, instructions, and applicable hooks are still loaded. Use a working directory you trust.
 

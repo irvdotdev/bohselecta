@@ -52,8 +52,6 @@ jobs:
           cp prototypes/popup/target/release/boh-popup "release/boh-popup-$PLATFORM"
           node scripts/checksums.mjs release
           node scripts/smoke-install.mjs release
-          node scripts/package-npm.mjs release release --platform-only
-          node scripts/smoke-npm.mjs "release/bohselecta-$(node -p 'require("./package.json").version').tgz"
       - uses: actions/upload-artifact@v4
         with:
           name: popup-${{ matrix.platform }}
@@ -81,7 +79,6 @@ jobs:
           path: release
           merge-multiple: true
       - run: npm ci --ignore-scripts
-      - run: node scripts/package-npm.mjs release
       - run: node scripts/generate-homebrew.mjs "$(node -p 'require("./package.json").version')" release
       - run: node scripts/checksums.mjs release
       - name: Publish prerelease

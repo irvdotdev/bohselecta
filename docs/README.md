@@ -12,7 +12,7 @@ Start with the [quick setup](../README.md#install): install with Homebrew, run `
 | [Original standalone launcher](STANDALONE.md) | The separate, optional terminal prototype |
 | [Changelog](../CHANGELOG.md) | Released changes |
 | [Contributing](../CONTRIBUTING.md) | Development checks and useful bug reports |
-| [Release process](RELEASING.md) | GitHub assets, Homebrew updates, and npm publishing |
+| [Release process](RELEASING.md) | GitHub assets and Homebrew updates |
 | [Walkthrough recording](VIDEO.md) | What was recorded and which release it shows |
 
-The current public release is an alpha. Automatic popup continuation is validated on Claude Code 2.1.282–283; other versions show a manual command. Model overrides apply to one task. Cost tiers are relative rankings, not live dollar prices or measured savings. npm/npx release downloads work; npm registry publication is still pending.
+The current public release is an alpha. Automatic popup continuation is validated on Claude Code 2.1.282–283; other versions show a manual command. Model overrides apply to one task. Cost tiers are relative rankings, not live dollar prices or measured savings. Install through Homebrew or the direct installer.

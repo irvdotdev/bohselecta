@@ -6,7 +6,7 @@ The right model for your task, inside Claude Code. Local recommendations, a term
 
 [![Tests](https://github.com/irvdotdev/bohselecta/actions/workflows/test.yml/badge.svg)](https://github.com/irvdotdev/bohselecta/actions/workflows/test.yml) [![Release checks](https://github.com/irvdotdev/bohselecta/actions/workflows/release.yml/badge.svg)](https://github.com/irvdotdev/bohselecta/actions/workflows/release.yml)
 
-**Public alpha · v0.3.0-alpha.7.** The Claude popup is the main experience. Automatic continuation is verified on Claude Code 2.1.282 and 2.1.283; other versions offer a manual continuation command. Model overrides apply to one task. Cross-provider handoff and live monetary pricing are not included.
+**Public alpha · v0.3.0-alpha.8.** The Claude popup is the main experience. Automatic continuation is verified on Claude Code 2.1.282 and 2.1.283; other versions offer a manual continuation command. Model overrides apply to one task. Cross-provider handoff and live monetary pricing are not included.
 
 [Website](https://irvdotdev.github.io/bohselecta/) · [Documentation](docs/README.md) · [Releases](https://github.com/irvdotdev/bohselecta/releases)
 
@@ -28,30 +28,14 @@ claude
 
 Skipped setup? Use `bohselecta popup claude` instead. No Rust is needed with the release packages. See [default launch and undo](#default-launch-and-undo) below.
 
-### npm / npx
-
-The GitHub release includes a tested npm package with compiled JavaScript and all four popup binaries. Until npm registry publication is available, install directly from the release:
-
-```sh
-npm install -g https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.7/bohselecta-0.3.0-alpha.7.tgz
-```
-
-Or try it without a global installation:
-
-```sh
-npx --yes --package=https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.7/bohselecta-0.3.0-alpha.7.tgz bohselecta popup claude
-```
-
-Requires Node.js 22.18+ (22.x) or 24+, npm, tmux, and signed-in Claude Code. No Rust or install scripts. The short commands `npm install -g bohselecta@alpha` and `npx bohselecta@alpha` are not available until registry publication is complete.
-
 ### Direct installer
 
 ```sh
-curl -fL https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.7/install.mjs -o /tmp/bohselecta-install.mjs
+curl -fL https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.8/install.mjs -o /tmp/bohselecta-install.mjs
 node /tmp/bohselecta-install.mjs
 ```
 
-Requires the same Node/npm setup as npm installation. The installer verifies SHA-256 checksums, installs to `~/.local/share/bohselecta-app`, and creates `~/.local/bin/bohselecta`. It prints a PATH hint when needed. Interactive installs offer the optional default setup; shell profiles change only after you opt in. Client settings are not changed. Use `--prefix /another/path` for another location.
+Requires Node.js 22.18+ (22.x) or 24+, including npm, plus tmux and signed-in Claude Code. The installer verifies SHA-256 checksums, installs to `~/.local/share/bohselecta-app`, and creates `~/.local/bin/bohselecta`. It prints a PATH hint when needed. Interactive installs offer the optional default setup; shell profiles change only after you opt in. Client settings are not changed. Use `--prefix /another/path` for another location.
 
 Prebuilt binaries support macOS 15+ and compatible glibc Linux (Ubuntu 22.04+) on arm64/x64. Windows and Alpine/musl are not supported. No Rust, Git, sudo, or separate API key is required for these installation methods. Use one installation method at a time to avoid multiple commands on PATH.
 
@@ -67,7 +51,7 @@ Prebuilt binaries support macOS 15+ and compatible glibc Linux (Ubuntu 22.04+) o
 | `bohselecta default claude status` | Check profile configuration |
 | `bohselecta default claude off` | Remove the shortcut; then open a new terminal |
 
-Piped calls keep using ordinary Claude. Existing shortcuts, edited bohselecta blocks, and linked shell profiles are left untouched with an explanation. Homebrew and npm do not edit profiles during installation; the direct installer offers setup only in an interactive terminal. After disabling, `unset -f claude` also clears the function from the current shell.
+Piped calls keep using ordinary Claude. Existing shortcuts, edited bohselecta blocks, and linked shell profiles are left untouched with an explanation. Homebrew does not edit profiles during installation; the direct installer offers setup only in an interactive terminal. After disabling, `unset -f claude` also clears the function from the current shell.
 
 ## How it works
 
@@ -90,18 +74,17 @@ Requires Git, Node/npm, and Rust/Cargo for the popup build. tmux and signed-in C
 ```sh
 git clone https://github.com/irvdotdev/bohselecta.git
 cd bohselecta
-git checkout v0.3.0-alpha.7
+git checkout v0.3.0-alpha.8
 npm ci
-npm link
-bohselecta native refresh claude
-bohselecta popup claude
+./bin/bohselecta native refresh claude
+./bin/bohselecta popup claude
 ```
 
-The first popup launch builds the locked Rust dependencies. If your npm global prefix needs administrator access, use `./bin/bohselecta` instead of `npm link`; do not run npm with sudo.
+The first popup launch builds the locked Rust dependencies. Run `./bin/bohselecta` from the checkout; use Homebrew or the direct installer for a command available everywhere.
 
 ## Update or remove
 
-For Homebrew, run `brew update && brew upgrade bohselecta`, or `brew uninstall bohselecta` to remove it. For npm, install the desired release tarball again, or run `npm uninstall -g bohselecta`. Task history is retained.
+For Homebrew, run `brew update && brew upgrade bohselecta`, or `brew uninstall bohselecta` to remove it. Task history is retained.
 
 For installer installations, download the installer from the desired release and run it again, then restart your popup session. Previous release directories are retained; see [installation, updates, and removal](docs/INSTALL.md). Source installations should check out the desired tag, run `npm ci`, and restart.
 

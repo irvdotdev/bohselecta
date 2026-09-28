@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0-alpha.8 — simpler distribution (2026-09-28)
+
+- Remove npm/npx installation options, distribution packaging, and registry publishing workflow.
+- Keep Homebrew and the direct installer, with the optional default Claude setup.
+- npm remains an internal dependency-management and development tool.
+
 ## 0.3.0-alpha.7 — optional default Claude shortcut (2026-09-28)
 
 - Add `bohselecta setup claude`: opt in once to open the popup when typing plain `claude` in an interactive zsh or bash terminal.
