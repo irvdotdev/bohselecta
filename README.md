@@ -1,5 +1,7 @@
 # bohselecta
 
+[![A blue furry DJ playing vinyl in a warmly lit hip-hop club.](https://irvdotdev.github.io/bohselecta/dj-session.png)](https://irvdotdev.github.io/bohselecta/)
+
 A local model adviser inside Claude Code and Codex. It checks the task, weighs capability against relative cost, and suggests a suitable model before you spend the expensive one on a small job.
 
 **Public alpha · v0.3.0-alpha.6.** The Claude popup is the main experience. Automatic continuation is verified on Claude Code 2.1.282 and 2.1.283; other versions offer a manual continuation command. Model overrides apply to one task. Cross-provider handoff and live monetary pricing are not included.
@@ -51,6 +53,10 @@ From the folder you want to work in:
 bohselecta native refresh claude
 bohselecta popup claude
 ```
+
+[![The real bohselecta terminal popup, with Sonnet and Opus choices in amber and cream on dark green.](https://irvdotdev.github.io/bohselecta/popup-poster.png)](https://irvdotdev.github.io/bohselecta/#how-it-works)
+
+[Watch the 27-second install-and-use walkthrough ↗](https://irvdotdev.github.io/bohselecta/#how-it-works)
 
 It starts on Sonnet. Suitable work proceeds quietly. A worthwhile change opens the chooser: arrows choose, Enter continues, Escape keeps the current model, and q cancels. Type `boh: status` inside Claude for status. To try a downgrade, launch `bohselecta popup claude --model opus`, then enter `todo app`.
 
