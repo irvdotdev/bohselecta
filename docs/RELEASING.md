@@ -25,4 +25,4 @@ Release jobs test npm global installation, installed hook imports, offline routi
 4. Configure a trusted publisher for package `bohselecta`: GitHub owner `irvdotdev`, repository `bohselecta`, workflow `npm.yml`, environment `npm`.
 5. Subsequent releases can use the **Publish verified npm package** workflow with the release tag. It verifies the already-tested release tarball before publishing via OIDC. No stored npm token is needed.
 
-Keep the website's short npm commands unpublished until the registry package resolves. The tarball URL works with npm and npx independently of registry publication.
+The registry install commands use `bohselecta@alpha` because releases are published under the alpha dist-tag. Keep the website's short npm commands unpublished until the registry package resolves. The tarball URL works with npm and npx independently of registry publication.

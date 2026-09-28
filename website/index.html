@@ -23,13 +23,11 @@
       <div class="content">
         <section id="run" aria-labelledby="run-title">
           <h2 id="run-title">Run it.</h2>
-          <p class="requirements">Needs Node 22.18+ (22.x) or 24+, tmux, and signed-in Claude Code.</p>
+          <p class="requirements">Have Homebrew and signed-in Claude Code ready.</p>
           <h3>01 / Install once</h3>
-          <div class="code-block"><pre><code>curl -fsSL https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.4/install.mjs -o /tmp/bohselecta-install.mjs &amp;&amp;
-node /tmp/bohselecta-install.mjs &amp;&amp;
-export PATH="$HOME/.local/bin:$PATH" &amp;&amp;
+          <div class="code-block"><pre><code>brew install irvdotdev/tap/bohselecta
 bohselecta native refresh claude</code></pre><button class="copy" type="button" aria-label="Copy installation commands">copy</button></div>
-          <p class="hint">Keep that PATH line in your shell profile.</p>
+          <p class="hint">Includes Node + tmux. No Rust.<br><a href="https://github.com/irvdotdev/bohselecta#npm--npx">npm / npx</a> · <a href="https://github.com/irvdotdev/bohselecta#direct-installer">Without Homebrew</a></p>
           <h3>02 / Launch from your project folder</h3>
           <div class="code-block launch"><pre><code>bohselecta popup claude</code></pre><button class="copy" type="button" aria-label="Copy launch command">copy</button></div>
         </section>
@@ -44,7 +42,7 @@ bohselecta native refresh claude</code></pre><button class="copy" type="button" 
             <a href="bohselecta-quickstart.mp4">Download the installation and usage video.</a>
           </video>
           </div>
-          <p class="caption">27 seconds · real terminal · pauses shortened</p>
+          <p class="caption">27 seconds · direct installer walkthrough · pauses shortened</p>
           <p class="hint">Automatic handoff on Claude 2.1.282–283. Other versions give you a command.</p>
         </section>
       </div>

@@ -1,5 +1,9 @@
 # Installing bohselecta
 
+**Easiest setup:** `brew install irvdotdev/tap/bohselecta` installs Node, tmux, and the prebuilt popup. Then run `bohselecta native refresh claude` and `bohselecta popup claude`. Update with `brew update && brew upgrade bohselecta`.
+
+For npm and npx release-tarball commands, see the [main installation guide](../README.md#npm--npx). The sections below describe the direct installer.
+
 Follow the current [README](../README.md#install) for the pinned public-alpha installer and the source-checkout alternative.
 
 ## Before installing

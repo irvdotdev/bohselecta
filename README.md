@@ -30,7 +30,7 @@ Or try it without a global installation:
 npx --yes --package=https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.6/bohselecta-0.3.0-alpha.6.tgz bohselecta popup claude
 ```
 
-Requires Node.js 22.18+ (22.x) or 24+, npm, tmux, and signed-in Claude Code. No Rust or install scripts. The short commands `npm install -g bohselecta` and `npx bohselecta` are not available until registry publication is complete.
+Requires Node.js 22.18+ (22.x) or 24+, npm, tmux, and signed-in Claude Code. No Rust or install scripts. The short commands `npm install -g bohselecta@alpha` and `npx bohselecta@alpha` are not available until registry publication is complete.
 
 ### Direct installer
 
