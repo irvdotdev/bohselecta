@@ -8,6 +8,9 @@ import {install,VERSION} from './install.mjs';
 const assets=resolve(process.argv[2]||'release'),temp=mkdtempSync(join(tmpdir(),'boh-clean-install-'));
 let corrupt=false;
 const server=createServer((req,res)=>{
+ // npm runs synchronously between requests; close test sockets instead of
+ // reusing a keep-alive connection whose timeout elapsed during npm ci.
+ res.setHeader('Connection','close');
  try {
   const name=basename(new URL(req.url,'http://localhost').pathname);
   res.end(corrupt && name.startsWith('boh-popup-')?Buffer.from('corrupt'):readFileSync(join(assets,name)));

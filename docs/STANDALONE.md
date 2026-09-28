@@ -175,4 +175,3 @@ Offline tests cover routing, history and feedback, bounded classification, CLI b
 Implementation: TypeScript using Node's native type stripping, `node:sqlite`, the official Claude Agent SDK, and Codex App Server over stdio. No hosted service is required. Native macOS integrations remain a later milestone.
 
 Primary interface references: [Codex App Server](https://learn.chatgpt.com/docs/app-server), [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk), [Claude permissions](https://code.claude.com/docs/en/agent-sdk/permissions), [OpenAI structured outputs](https://developers.openai.com/api/docs/guides/structured-outputs).
-

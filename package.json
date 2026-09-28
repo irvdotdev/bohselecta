@@ -1,6 +1,6 @@
 {
   "name": "bohselecta",
-  "version": "0.3.0-alpha.1",
+  "version": "0.3.0-alpha.2",
   "private": true,
   "description": "A cost-conscious terminal model router for Codex and Claude",
   "type": "module",
