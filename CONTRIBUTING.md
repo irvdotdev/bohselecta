@@ -30,4 +30,4 @@ Remove private task text, credentials, and personal paths before sharing logs. N
 
 ## Releases
 
-See the [release process](docs/RELEASING.md). Published tags and assets are immutable; fixes get a new version. Keep npm registry status, compatibility claims, and video provenance accurate. Software is MIT licensed; [supplied artwork](website/ARTWORK.md) has separate restrictions.
+See the [release process](docs/RELEASING.md). Published tags and assets are immutable; fixes get a new version. Keep installation instructions, compatibility claims, and video provenance accurate. Software is MIT licensed; [supplied artwork](website/ARTWORK.md) has separate restrictions.
