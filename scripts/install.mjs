@@ -5,7 +5,7 @@ import {homedir} from 'node:os';
 import {dirname, join, resolve} from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
-export const VERSION='0.3.0-alpha.5';
+export const VERSION='0.3.0-alpha.6';
 export function compatibleNode(version) {
  const [major,minor]=version.split('.').map(Number);
  return major===22 && minor>=18 || major>=24;

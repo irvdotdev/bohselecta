@@ -38,6 +38,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - run: npm ci --ignore-scripts
       - name: Select Rust
         run: rustup update stable --no-self-update && rustup default stable
       - run: cargo test --locked --manifest-path prototypes/popup/Cargo.toml

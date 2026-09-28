@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Existing GitHub release tag (for example v0.3.0-alpha.5)'
+        description: 'Existing GitHub release tag (for example v0.3.0-alpha.6)'
         required: true
 permissions:
   contents: read

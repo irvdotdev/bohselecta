@@ -2,7 +2,7 @@
 
 A local model adviser inside Claude Code and Codex. It checks the task, weighs capability against relative cost, and suggests a suitable model before you spend the expensive one on a small job.
 
-**Public alpha · v0.3.0-alpha.5.** The Claude popup is the main experience. Automatic continuation is verified on Claude Code 2.1.282 and 2.1.283; other versions offer a manual continuation command. Model overrides apply to one task. Cross-provider handoff and live monetary pricing are not included.
+**Public alpha · v0.3.0-alpha.6.** The Claude popup is the main experience. Automatic continuation is verified on Claude Code 2.1.282 and 2.1.283; other versions offer a manual continuation command. Model overrides apply to one task. Cross-provider handoff and live monetary pricing are not included.
 
 [Website](https://irvdotdev.github.io/bohselecta/) · [Documentation](https://irvdotdev.github.io/bohselecta/docs.html) · [Releases](https://github.com/irvdotdev/bohselecta/releases)
 
@@ -21,13 +21,13 @@ Homebrew installs Node and tmux and includes the prebuilt popup. Sign in to Clau
 The GitHub release includes a tested npm package with compiled JavaScript and all four popup binaries. Until npm registry publication is available, install directly from the release:
 
 ```sh
-npm install -g https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.5/bohselecta-0.3.0-alpha.5.tgz
+npm install -g https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.6/bohselecta-0.3.0-alpha.6.tgz
 ```
 
 Or try it without a global installation:
 
 ```sh
-npx --yes --package=https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.5/bohselecta-0.3.0-alpha.5.tgz bohselecta popup claude
+npx --yes --package=https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.6/bohselecta-0.3.0-alpha.6.tgz bohselecta popup claude
 ```
 
 Requires Node.js 22.18+ (22.x) or 24+, npm, tmux, and signed-in Claude Code. No Rust or install scripts. The short commands `npm install -g bohselecta` and `npx bohselecta` are not available until registry publication is complete.
@@ -35,7 +35,7 @@ Requires Node.js 22.18+ (22.x) or 24+, npm, tmux, and signed-in Claude Code. No 
 ### Direct installer
 
 ```sh
-curl -fL https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.5/install.mjs -o /tmp/bohselecta-install.mjs
+curl -fL https://github.com/irvdotdev/bohselecta/releases/download/v0.3.0-alpha.6/install.mjs -o /tmp/bohselecta-install.mjs
 node /tmp/bohselecta-install.mjs
 ```
 
@@ -65,7 +65,7 @@ Requires Git, Node/npm, and Rust/Cargo for the popup build. tmux and signed-in C
 ```sh
 git clone https://github.com/irvdotdev/bohselecta.git
 cd bohselecta
-git checkout v0.3.0-alpha.5
+git checkout v0.3.0-alpha.6
 npm ci
 npm link
 bohselecta native refresh claude

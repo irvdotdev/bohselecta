@@ -1,7 +1,8 @@
 # Changelog
 
-## 0.3.0-alpha.5 — easier installation (2026-09-28)
+## 0.3.0-alpha.6 — easier installation (2026-09-28)
 
+- The alpha.5 tag was an unpublished CI packaging attempt; install build dependencies before compiling npm output on clean runners.
 - Add a Homebrew tap with Node and tmux dependencies, verified prebuilt popups, and automatic release updates.
 - Package compiled JavaScript and four popup binaries for npm and npx, without install scripts or a Rust requirement.
 - Test npm global installs, plugin imports, offline routing, popup rendering, and npx on every release platform.
