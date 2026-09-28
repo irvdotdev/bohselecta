@@ -65,3 +65,9 @@
 /* Palette inspired by the supplied DJ imagery; original terminal layout. */
 .wordmark .prompt{color:#62b0d9}
 .model-option.selected{border-color:#438bae;color:#f1e2ca}
+
+/* Original DJ photograph, with the compact terminal layout below. */
+.landing-photo{margin:32px 0 0;border:1px solid var(--line);overflow:hidden}
+.landing-photo img{display:block;width:100%;height:auto;max-height:420px;object-fit:cover;object-position:center 46%}
+.landing-main{padding-top:40px}
+@media(max-width:720px){.landing-photo{margin-top:24px}.landing-photo img{min-height:210px;object-fit:cover}.landing-main{padding-top:30px}}
